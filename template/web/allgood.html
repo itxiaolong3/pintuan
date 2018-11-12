@@ -1,0 +1,378 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<link rel="stylesheet" type="text/css" href="../addons/pintuan/template/public/ygcsslist.css">
+<style type="text/css">
+    .main{position: relative;}
+    .navback{width: 0}
+    .yg_back{margin-left: 136px;}
+    .ygrow{margin-top: 20px;font-size: 12px;}
+    .ygmartop{margin-top: 30px;font-size: 12px;}
+    .ygmartop2{margin-bottom: 10px;}
+    .yg5_key>div{float: left;line-height: 34px;}
+    .store_td1{height: 45px;}
+    .store_list_img{width: 60px;height: 60px;}
+    .list_tabel>tbody>tr>td{vertical-align: middle;text-align: center;height: 50px}
+    .list_tabel tr{border-bottom: 1px solid #cdcdcd;}
+    .yg5_btn{background-color: #EEEEEE;color: #333;border: 1px solid #E4E4E4;border-radius: 6px;width: 100px;height: 34px;}
+    .yg5_btn2{background-color: white;color: #333;border: 1px solid white;border-radius: 6px;width: 100px;height: 34px;}
+    .yg13_img{width: 50px;height: 50px;border-radius: 4px;}
+    .yg_name{width: 30%;height: 34px;line-height: 34px;color: #333;float: left;background-color: white;border: 1px solid #E4E4E4;text-align: center;}
+    .yg_left{float: left;}
+    .form-control{width: 70%;}
+    .ygseledi{width: 60%;}
+    .dishes{display: flex;align-items: center;}
+    .dishes_font{font-size: 20px;}
+    .dishes_inp{width: 195px;height: 23px;border: none;}
+    .dishes_inp2{margin-right: 20px;}
+    .input_box{border: 2px solid #5bc0de;border-radius: 4px;padding: 5px;margin-right: 10px;background-color: #5bc0de;color: white;}
+    .store_inp{margin-left: 5px;}
+    .dish_left{margin-right: 20px;}
+    /*    .dish_btn>button,.dish_btn>a{margin-bottom: 10px;}
+    */    .ygboxl{margin-bottom: 15px;}
+    .top_tip{display: flex;background: #fff;padding-left: 20px}
+    /*    .nav_box{border-right: 1px solid #cdcdcd;padding: 0;text-align: center;height: 820px;background: #fff}
+    */
+    .nav_box{
+        left: 0;
+        top: 0;
+        bottom: 0;
+        color: #333;
+        border-right: 1px solid #efefef;
+        text-align: center;
+        position: absolute;
+        background: #fff;
+        z-index:;
+        width: 130px;
+    }
+    .nav_name{overflow: hidden;}
+    .nav_name li{padding:10px 0;}
+    .nav_name li.active{background:#F5F7F9;color:#44abf7;background: #edf6ff}
+    .nav_name li:hover{background:#F5F7F9;background: #edf6ff}
+    .tab{border-bottom: 1px solid #cdcdcd;overflow: hidden;padding-left: 20px;}
+    .tab li{float: left;padding:10px;}
+    .tab li.on{border-bottom: 2px solid #44ABF7;color:#44ABF7}
+    .th th{font-size: 14px;font-weight: normal;padding: 10px 30px;background: #FAFAFA}
+    .img{width: 50px;height: 50px;background: #ccc; display: block;margin: 10px auto;}
+    .all_style{padding: 3px 10px}
+    .orange{background: #FF7F50;color: #fff;}
+    .orange:hover{color: #fff;}
+    /*.ygboxl>.input-group{border:1px solid green;}*/
+</style>
+<!--图片放大css-->
+<style>
+    #enlarge_images{position:absolute;display:none;z-index:2;border:5px solid #f4f4f4}
+</style>
+<div class="top_tip">
+    <div class="dishes">
+        <button class="btn ygyouhui2  dish_left" id="allshang">批量上架</button>
+        <button class="btn storegrey2  dish_left" id="alldown">批量下架</button>
+        <button class="btn ygshouqian2 dish_left" id="allselect">批量删除</button>
+        <form method="post" action="" enctype="multipart/form-data" class="dishes">
+            <!-- <div class="dishses_font">导入Excel表：</div> -->
+
+            <div class="input_box"><input  type="file" name="file_stu" class="dishes_inp"/></div>
+            <input type="hidden" name="token" value="{$_W['token']}"/>
+            <input type="submit" name="submit2"  value="导入" class="dishes_inp2 btn btn-info btn-sm" />
+        </form>
+        <a class="btn btn-sm btn-info ms_mb" href="{$_W['siteroot']}addons/pintuan/excel/dishes.xls">下载导入模板</a>
+    </div>
+    &nbsp;
+    <div class="row ygmartop" style="margin-top: 12px">
+        <form action="" method="get" class="col-md-12" style="padding: 0px;">
+            <div class="col-md-12 ygboxl">
+                <input type="hidden" name="c" value="site" />
+                <input type="hidden" name="a" value="entry" />
+                <input type="hidden" name="m" value="pintuan" />
+                <input type="hidden" name="do" value="allgood" />
+                <div class="col-md-5" style="padding: 0px;">
+                    <div class="yg_name">商品名称</div>
+                    <input type="text" name="keywords" class="yg_left form-control" placeholder="请输入商品名称">
+                </div>
+                <div class="col-md-6">
+                    <div class="yg_name">
+                        商品状态
+                    </div>
+                    <select class="ygseledi" style="color: #333;" name="is_show2">
+                        <option value="">不限</option>
+                        <option value="1">已上架</option>
+                        <option value="2">未上架</option>
+                    </select>
+                </div>
+
+                <div class="col-md-1">
+                    <input type="submit" value="搜索" name="submit" class="btn btn-primary btn-sm"/>
+                    <input type="hidden" name="token" value="{$_W['token']}"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="main" style="margin-top: 0">
+    <div class="col-md-1 nav_box">
+        <ul class="nav_name">
+            <li {if !$_GPC['type_id']}class="active"{/if}><a href="{php echo $this->createWebUrl('allgood')}">全部</a></li>
+            {loop $type  $item2}
+            <li {if $_GPC['type_id']==$item2['QsID']}class="active"{/if}><a href="{php echo $this->createWebUrl('allgood',array('type_id'=>$item2['QsID']))}">{$item2['Name']}</a></li>
+            {/loop}
+
+        </ul>
+    </div>
+    <div class="col-md-11" style="margin-left: 130px">
+        <!--        <div class="panel-heading">
+                   商品列表
+               </div> -->
+        <div class="">
+            <div class="row">
+                <table class="col-md-12 list_tabel">
+                    <tr class="th"><th  colspan="12">商品列表</th></tr>
+                    <tr class="">
+                        <td class="col-md-1">
+                            <input type="checkbox" class="allcheck" style="width: 18px;margin-top: 5px;height: 18px;"/>
+                            <span class="store_inp">全选</span>
+                        </td>
+                        <td class="">ID</td>
+                        <td class="col-md-1">商品图片</td>
+                        <td class="col-md-1">商品名称</td>
+                        <td class="col-md-1">商品价格</td>
+                        <td  style="width:3%;">已拼数</td>
+                        <td class="" style="width:3%;">总销量</td>
+                        <td class="col-md-1">颜色</td>
+                      <td class="col-md-1">尺寸</td>
+                        <td class="col-md-1">所属分类</td>
+                        <td class="col-md-1">所在大厦</td>
+                        <td class="col-md-1">所属栏目</td>
+                        <td class="col-md-1">状态</td>
+                        <td class="col-md-2">操作</td>
+                    </tr>
+                    {loop $list $key $item}
+                    <tr class="">
+                        <td><input type="checkbox" name="test" value="{$item['gID']}" style="width: 18px;margin-top: 5px;height: 18px;"></td>
+                        <td>{$item['gID']}</td>
+                        <td class="col-md-1 bigimg"><img src="{media $item['Itemcover']}" alt="" class="img"></td>
+                        <td>{$item['Title']}</td>
+                        <td>{$item['Price']}</td>
+                        <td>{$item['DealCount']}</td>
+                        <td>{$item['TotalQty']}</td>
+                        <td>{$item['Colors']}</td>
+                       <td>{$item['Sizes']}</td>
+                        <td>{$item['typename']}</td>
+                        <td>{$item['hname']}</td>
+                        <td>{$item['Name']}</td>
+                        <td class="col-md-1 dish_btn">
+                            {if $item['Statu']==1}
+                            <button class="btn orange">售卖中</button>
+                            {else}
+                            <button class="btn">待上架</button>
+                            {/if}
+                        </td>
+                        <td class="col-md-2 dish_btn">
+                            {if $item['Statu']==1}
+                            <button  type="button"  data-toggle="modal" data-target="#myModalc{$item['gID']}" class="btn btn-xs storeblue">下架</button>
+                            {elseif $item['Statu']==2}
+                            <button type="button"  data-toggle="modal" data-target="#myModalb{$item['gID']}" class="btn btn-xs storegrey">上架</button>
+                            {/if}
+                            <a href="{php echo $this->createWebUrl('editallgood', array('id' => $item['gID']))}" class="storespan btn btn-xs">
+                                <span class="fa fa-pencil"></span>
+                                <span class="bianji">编辑
+                                        <span class="arrowdown"></span>
+                                    </span>
+                            </a>
+
+                            <a href="javascript:void(0);" class="storespan btn btn-xs" data-toggle="modal" data-target="#myModal{$item['gID']}">
+                                <span class="fa fa-trash-o"></span>
+                                <span class="bianji">删除
+                                        <span class="arrowdown"></span>
+                                    </span>
+                            </a>
+                            <!-- <a class="btn btn-success btn-sm" href="{php echo $this->createWebUrl('adddishes', array('id' => $item['id']))}" title="编辑">编辑</a>
+                            &nbsp;&nbsp;<a class="btn btn-success btn-sm" href="{php echo $this->createWebUrl('spec',array('dishes_id' => $item['id']));}" title="添加规格">添加规格</a>
+                            &nbsp;&nbsp;<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{$item['id']}">删</button> -->
+                        </td>
+                    </tr>
+
+                    <div class="modal fade" id="myModal{$item['gID']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">提示</h4>
+                                </div>
+                                <div class="modal-body" style="font-size: 20px">
+                                    确定删除么？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <a href="{php echo $this->createWebUrl('allgood', array('op' => 'delete', 'delid' => $item['gID']))}" type="button" class="btn btn-info" >确定</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModalb{$item['gID']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">提示</h4>
+                                </div>
+                                <div class="modal-body" style="font-size: 20px">
+                                    确定上架么？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <a href="{php echo $this->createWebUrl('allgood',array('id'=>$item['gID'],'page'=>$_GPC['page'],'keywords'=>$_GPC['keywords'],'type_id'=>$_GPC['type_id'],'is_show'=>1));}" type="button" class="btn btn-info" >确定</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModalc{$item['gID']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">提示</h4>
+                                </div>
+                                <div class="modal-body" style="font-size: 20px">
+                                    确定下架么？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <a href="{php echo $this->createWebUrl('allgood',array('id'=>$item['gID'],'page'=>$_GPC['page'],'keywords'=>$_GPC['keywords'],'type_id'=>$_GPC['type_id'],'is_show'=>2));}" type="button" class="btn btn-info" >确定</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/loop}
+                    {if empty($list)}
+                    <tr class="yg5_tr2">
+                        <td colspan="12">
+                            暂无商品信息
+                        </td>
+                    </tr>
+                    {/if}
+                </table>
+              <div id="enlarge_images"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-right we7-margin-top">{$pager}</div>
+
+<script type="text/javascript">
+    $(function(){
+        // $("#frame-2").addClass("in");
+        $("#frame-7").show();
+        $("#yframe-7").addClass("wyactive");
+        // —————批量上架—————
+        $("#allshang").on('click',function(){
+            var check = $("input[type=checkbox][class!=allcheck]:checked");
+            if(check.length < 1){
+                alert('请选择要上架的商品!');
+                return false;
+            }else if(confirm("确认要上架此商品?")){
+                var id = new Array();
+                check.each(function(i){
+                    id[i] = $(this).val();
+                });
+                console.log(id)
+                $.ajax({
+                    type:"post",
+                    url:"{$_W['siteroot']}/app/index.php?i={$_W['uniacid']}&c=entry&do=sj&m=pintuan",
+                    dataType:"text",
+                    data:{id:id},
+                    success:function(data){
+                        console.log(data);
+                        location.reload();
+                    }
+                })
+
+            }
+        });
+
+        // 批量下架
+        $("#alldown").on('click',function(){
+            var check = $("input[type=checkbox][class!=allcheck]:checked");
+            if(check.length < 1){
+                alert('请选择要下架的商品!');
+                return false;
+            }else if(confirm("确认要下架此商品?")){
+                var id = new Array();
+                check.each(function(i){
+                    id[i] = $(this).val();
+                });
+                console.log(id)
+                $.ajax({
+                    type:"post",
+                    url:"{$_W['siteroot']}/app/index.php?i={$_W['uniacid']}&c=entry&do=xj&m=pintuan",
+                    dataType:"text",
+                    data:{id:id},
+                    success:function(data){
+                        console.log(data);
+                        location.reload();
+                    }
+                })
+
+            }
+        });
+
+        $(".allcheck").on('click',function(){
+            var checked = $(this).get(0).checked;
+            $("input[type=checkbox]").prop("checked",checked);
+        });
+
+        $("#allselect").on('click',function(){
+            var check = $("input[type=checkbox][class!=allcheck]:checked");
+            if(check.length < 1){
+                alert('请选择要删除的商品!');
+                return false;
+            }else if(confirm("确认要删除此商品?")){
+                var id = new Array();
+                check.each(function(i){
+                    id[i] = $(this).val();
+                });
+                // console.log(id)
+                $.ajax({
+                    type:"post",
+                    url:"{$_W['siteroot']}/app/index.php?i={$_W['uniacid']}&c=entry&do=UpdCai&m=pintuan",
+                    dataType:"text",
+                    data:{id:id},
+                    success:function(data){
+                        console.log(data);
+                        location.reload();
+                    }
+                })
+
+            }
+        });
+        $(".allcheck").on('click',function(){
+            var checked = $(this).get(0).checked;
+            $("input[type=checkbox]").prop("checked",checked);
+        });
+
+    })
+</script>
+<!--图片放大js-->
+<script>
+    var gg = $('.bigimg img');
+    var ei = document.getElementById("enlarge_images");
+    for(i=0; i<gg.length; i++){
+        var ts = gg[i];
+        ts.onmousemove = function(event){
+            event = event || window.event;
+            ei.style.display = "block";
+            ei.innerHTML = '<img src="' + this.src + '" />';
+            ei.style.top  = document.body.scrollTop + event.clientY + 10 + "px";
+            ei.style.left = document.body.scrollLeft + event.clientX + 10 + "px";
+        }
+        ts.onmouseout = function(){
+            ei.innerHTML = "";
+            ei.style.display = "none";
+        }
+        ts.onclick = function(){
+            window.open( this.src );
+        }
+    }
+</script>
+

@@ -1,0 +1,97 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<link rel="stylesheet" type="text/css" href="../addons/pintuan/template/public/ygcsslist.css">
+<style type="text/css">
+    .yg5_key>div{float: left;line-height: 34px;}
+    .store_td1{height: 45px;}
+    .store_list_img{width: 60px;height: 60px;}
+    .yg5_tabel{border-color: #e5e5e5;outline: 1px solid #e5e5e5;}
+    .yg5_tr2>td{padding: 10px 15px;border: 1px solid #e5e5e5;text-align:center;}
+    .yg5_tr1>th{
+        border: 1px solid #e5e5e5;
+        padding-left: 15px;
+        background-color: #FAFAFA;
+        font-weight: bold;
+        text-align: center;
+    }
+    .yg5_btn{background-color: #EEEEEE;color: #333;border: 1px solid #E4E4E4;border-radius: 6px;width: 100px;height: 34px;}
+    /*#frame-2{display: block;visibility: visible;}*/
+</style>
+<ul class="nav nav-tabs">
+    <span class="ygxian"></span>
+    <div class="ygdangq">当前位置:</div>
+    <li class="active"><a href="{php echo $this->createWebUrl('twotype')}">二级分类</a></li>
+    <li><a href="{php echo $this->createWebUrl('addtwotype')}">添加二级分类</a></li>
+</ul>
+<div class="main">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            分类列表
+        </div>
+        <div class="panel-body" style="padding: 0px 15px;">
+            <div class="row">
+                <table class="yg5_tabel col-md-12">
+                    <tr class="yg5_tr1">
+                        <th class="col-md-1" style="font-size:18px;">id</th>
+                        <th class="col-md-1" style="font-size:18px;">分类名称</th>
+                        <th class="col-md-1" style="font-size:18px;">所属分类</th>
+                        <th class="col-md-2" style="font-size:18px;">图标</th>
+                        <th class="col-md-2" style="font-size:18px;">操作</th>
+                    </tr>
+                    {loop $list $row}
+                    <tr class="yg5_tr2">
+                        <td>{$row['ID']}</td>
+                        <td>{$row['Name']}</td>
+                        <td>{$row['onename']}</td>
+                        <td><div class="type-parent"><img height="40" width="40" src="{media $row['Cover']}">&nbsp;&nbsp;</div></td>
+                        <td>
+                            <a href="{php echo $this->createWebUrl('addtwotype', array('id' => $row['ID']))}" class="storespan btn btn-xs">
+                                <span class="fa fa-pencil"></span>
+                                <span class="bianji">编辑<span class="arrowdown"></span>
+                                </span>
+                            </a>
+                            <a href="javascript:void(0);" class="storespan btn btn-xs" data-toggle="modal" data-target="#myModal{$row['ID']}">
+                                <span class="fa fa-trash-o"></span>
+                                <span class="bianji">删除<span class="arrowdown"></span>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="myModal{$row['ID']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">危险提示</h4>
+                        </div>
+                        <div class="modal-body" style="font-size: 20px">
+                            删除分类会影响该分类下的所有商品的显示，确定删除么？
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <a href="{php echo $this->createWebUrl('twotype', array('op' => 'delete', 'id' => $row['ID']))}" type="button" class="btn btn-info" >确定</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    {/loop}
+                              {if empty($list)}
+          <tr class="yg5_tr2">
+            <td colspan="8">
+              暂无分类
+          </td>
+      </tr> 
+      {/if} 
+                </table>
+            </div>
+        </form>
+    </div>
+    {$pager}
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#frame-1").show();
+        $("#yframe-1").addClass("wyactive");
+        // $("#frame-2").addClass("in");
+    })
+</script>

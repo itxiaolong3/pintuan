@@ -1,0 +1,1438 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns="http://www.baidu.com" versionCode="0.8,1.0">
+
+	<application setting="false">
+		<name><![CDATA[天天拼团小程序]]></name>
+		<identifie><![CDATA[pintuan]]></identifie>
+		<version><![CDATA[5.7.5]]></version>
+		<type><![CDATA[biz]]></type>
+		<ability><![CDATA[帮助小姐姐购买心意的衣服]]></ability>
+		<description><![CDATA[天天拼团，便宜货又足]]></description>
+		<author><![CDATA[QQ978987198]]></author>
+		<url><![CDATA[http://bbs.we7.cc/]]></url>
+	</application>
+
+	<platform>
+		<subscribes>
+		</subscribes>
+
+		<handles>
+		</handles>
+
+		<rule embed="false" />
+		<card embed="false" />
+		
+		<supports>
+			<item type="wxapp" />
+		</supports>
+	</platform>
+
+	<bindings>
+		<page>
+			<entry title="首页" do="/pintuan/pages/index/index" state="" direct="false"/>
+		</page>
+	</bindings>
+
+	<permissions>
+	</permissions>
+	<install><![CDATA[CREATE TABLE IF NOT EXISTS `ims_pintuan_account` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`weid` int(10) unsigned NOT NULL,
+`storeid` varchar(1000) NOT NULL,
+`uid` int(10) unsigned NOT NULL,
+`from_user` varchar(100) NOT NULL,
+`accountname` varchar(50) NOT NULL,
+`password` varchar(200) NOT NULL,
+`salt` varchar(10) NOT NULL,
+`pwd` varchar(50) NOT NULL,
+`mobile` varchar(20) NOT NULL,
+`email` varchar(20) NOT NULL,
+`username` varchar(50) NOT NULL,
+`pay_account` varchar(200) NOT NULL,
+`displayorder` tinyint(3) unsigned NOT NULL,
+`dateline` int(10) unsigned NOT NULL,
+`status` tinyint(1) unsigned NOT NULL,
+`role` tinyint(1) unsigned NOT NULL,
+`lastvisit` int(10) unsigned NOT NULL,
+`lastip` varchar(15) NOT NULL,
+`areaid` int(10) NOT NULL,
+`is_admin_order` tinyint(1) unsigned NOT NULL,
+`is_notice_order` tinyint(1) unsigned NOT NULL,
+`is_notice_queue` tinyint(1) unsigned NOT NULL,
+`is_notice_service` tinyint(1) unsigned NOT NULL,
+`is_notice_boss` tinyint(1) NOT NULL,
+`remark` varchar(1000) NOT NULL,
+`lat` decimal(18,10) NOT NULL,
+`lng` decimal(18,10) NOT NULL,
+`authority` text NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_ad` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`logo` varchar(200) NOT NULL,
+`src` varchar(100) NOT NULL,
+`src2` varchar(200) NOT NULL,
+`created_time` varchar(20) NOT NULL,
+`orderby` int(11) NOT NULL,
+`status` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`appid` varchar(20) NOT NULL,
+`title` varchar(20) NOT NULL,
+`xcx_name` varchar(20) NOT NULL,
+`item` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_area` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`area_name` varchar(20) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_assess` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`content` text NOT NULL,
+`img` text NOT NULL,
+`stars` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`state` int(11) NOT NULL,
+`order_id` int(11) NOT NULL,
+`hf` text NOT NULL,
+`hf_time` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_call` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`is_open` int(4) NOT NULL,
+`appid` varchar(20) NOT NULL,
+`apikey` varchar(50) NOT NULL,
+`src` varchar(50) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_calllog` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`table_id` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`state` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_commission_withdrawal` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+`sh_time` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`account` varchar(100) NOT NULL,
+`tx_cost` decimal(10,2) NOT NULL,
+`sj_cost` decimal(10,2) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_continuous` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`day` int(11) NOT NULL,
+`integral` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_coupons` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`start_time` varchar(20) NOT NULL,
+`end_time` varchar(20) NOT NULL,
+`full` decimal(10,1) NOT NULL,
+`reduce` decimal(10,1) NOT NULL,
+`store_id` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`number` int(11) NOT NULL,
+`stock` int(11) NOT NULL,
+`instruction` text NOT NULL,
+`type_id` varchar(20) NOT NULL,
+`is_hy` int(1) NOT NULL,
+`day` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_couponset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`is_tjhb` int(11) NOT NULL,
+`yhq_set` int(11) NOT NULL,
+`time` varchar(10) NOT NULL,
+`time2` varchar(10) NOT NULL,
+`number` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_cptj` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`img` varchar(500) NOT NULL,
+`details` text NOT NULL,
+`content` varchar(100) NOT NULL,
+`src` varchar(100) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_czhd` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`full` int(11) NOT NULL,
+`reduction` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_czorder` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`money` decimal(10,2) NOT NULL,
+`money2` decimal(10,2) NOT NULL,
+`user_id` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`code` varchar(100) NOT NULL,
+`form_id` varchar(100) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_distribution` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`start` int(11) NOT NULL,
+`end` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`num` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_drorder` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_dyj` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`tag_id` varchar(30) NOT NULL,
+`name` varchar(20) NOT NULL,
+`dyj_title` varchar(50) NOT NULL,
+`dyj_id` varchar(50) NOT NULL,
+`dyj_key` varchar(50) NOT NULL,
+`api` varchar(100) NOT NULL,
+`mid` varchar(100) NOT NULL,
+`state` int(11) NOT NULL,
+`location` int(11) NOT NULL,
+`yy_id` varchar(20) NOT NULL,
+`token` varchar(50) NOT NULL,
+`num` int(11) NOT NULL,
+`fezh` varchar(40) NOT NULL,
+`fe_ukey` varchar(50) NOT NULL,
+`fe_dycode` varchar(20) NOT NULL,
+`type` int(11) NOT NULL,
+`uniacid` varchar(50) NOT NULL,
+`xx_sn` varchar(10) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_dytag` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`tag_name` varchar(30) NOT NULL,
+`sort` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_earnings` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`order_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`son_id` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`time` int(11) NOT NULL,
+`note` varchar(50) NOT NULL,
+`state` int(4) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_formid` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`form_id` varchar(200) NOT NULL,
+`time` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_fxset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`fx_details` text NOT NULL,
+`tx_details` text NOT NULL,
+`is_fx` int(11) NOT NULL,
+`is_ej` int(11) NOT NULL,
+`is_type` int(11) NOT NULL,
+`tx_rate` int(11) NOT NULL,
+`dn_yj` varchar(10) NOT NULL,
+`dn_ej` varchar(10) NOT NULL,
+`wm_yj` varchar(10) NOT NULL,
+`wm_ej` varchar(10) NOT NULL,
+`tx_money` int(11) NOT NULL,
+`img` varchar(100) NOT NULL,
+`img2` varchar(100) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`is_open` int(11) NOT NULL,
+`instructions` text NOT NULL,
+`fx_name` varchar(30) NOT NULL,
+`type` int(4) NOT NULL,
+`is_check` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_fxuser` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`fx_user` int(11) NOT NULL,
+`time` datetime NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_goods` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`type_id` int(11) NOT NULL,
+`label_id` int(11) NOT NULL,
+`logo` varchar(200) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`money2` decimal(10,2) NOT NULL,
+`vip_money` decimal(10,2) NOT NULL,
+`dn_money` decimal(10,2) NOT NULL,
+`is_show` int(11) NOT NULL,
+`inventory` int(11) NOT NULL,
+`content` varchar(50) NOT NULL,
+`details` text NOT NULL,
+`sales` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+`is_gg` int(11) NOT NULL,
+`is_hot` int(11) NOT NULL,
+`is_zp` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`quantity` int(11) NOT NULL,
+`box_money` decimal(10,2) NOT NULL,
+`is_new` int(11) NOT NULL,
+`is_tj` int(11) NOT NULL,
+`restrict_num` int(11) NOT NULL,
+`start_num` int(11) NOT NULL,
+`dn_hymoney` decimal(10,2) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_group` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`goods_id` int(11) NOT NULL,
+`goods_logo` varchar(255) NOT NULL,
+`goods_name` varchar(255) NOT NULL,
+`kt_num` int(11) NOT NULL,
+`yg_num` int(11) NOT NULL,
+`kt_time` int(11) NOT NULL,
+`dq_time` int(11) NOT NULL,
+`state` int(4) NOT NULL,
+`user_id` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_groupgoods` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`type_id` int(11) NOT NULL,
+`name` varchar(255) NOT NULL,
+`logo` varchar(255) NOT NULL,
+`img` text NOT NULL,
+`inventory` int(11) NOT NULL,
+`pt_price` decimal(10,2) NOT NULL,
+`y_price` decimal(10,2) NOT NULL,
+`dd_price` decimal(10,2) NOT NULL,
+`ycd_num` int(11) NOT NULL,
+`ysc_num` int(11) NOT NULL,
+`people` int(11) NOT NULL,
+`start_time` int(11) NOT NULL,
+`end_time` int(11) NOT NULL,
+`xf_time` int(11) NOT NULL,
+`is_shelves` int(4) NOT NULL,
+`details` text NOT NULL,
+`num` int(11) NOT NULL,
+`display` int(4) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`introduction` text NOT NULL,
+`time` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_grouphx` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`hx_id` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_grouporder` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`group_id` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`goods_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`order_num` varchar(30) NOT NULL,
+`logo` varchar(255) NOT NULL,
+`goods_name` varchar(255) NOT NULL,
+`goods_type` varchar(50) NOT NULL,
+`price` decimal(10,2) NOT NULL,
+`goods_num` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`pay_type` int(4) NOT NULL,
+`receive_name` varchar(30) NOT NULL,
+`receive_tel` varchar(20) NOT NULL,
+`receive_address` varchar(100) NOT NULL,
+`note` varchar(100) NOT NULL,
+`state` int(4) NOT NULL,
+`xf_time` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+`pay_time` int(11) NOT NULL,
+`cz_time` int(11) NOT NULL,
+`code` varchar(30) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_grouptype` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`img` varchar(100) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_help` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`question` varchar(200) NOT NULL,
+`answer` text NOT NULL,
+`sort` int(4) NOT NULL,
+`uniacid` varchar(50) NOT NULL,
+`created_time` datetime NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_hyorder` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`day` int(11) NOT NULL,
+`month` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`pay_type` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`code` varchar(100) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`user_tel` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_hyqx` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`days` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_integral` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`score` int(11) NOT NULL,
+`type` int(4) NOT NULL,
+`order_id` int(11) NOT NULL,
+`cerated_time` datetime NOT NULL,
+`uniacid` varchar(50) NOT NULL,
+`note` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_jfgoods` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(50) NOT NULL,
+`img` varchar(100) NOT NULL,
+`money` int(11) NOT NULL,
+`type_id` int(11) NOT NULL,
+`goods_details` text NOT NULL,
+`process_details` text NOT NULL,
+`attention_details` text NOT NULL,
+`number` int(11) NOT NULL,
+`time` varchar(50) NOT NULL,
+`is_open` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`hb_moeny` decimal(10,2) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_jfrecord` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`good_id` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`user_tel` varchar(20) NOT NULL,
+`address` varchar(200) NOT NULL,
+`note` varchar(20) NOT NULL,
+`integral` int(11) NOT NULL,
+`good_name` varchar(50) NOT NULL,
+`good_img` varchar(100) NOT NULL,
+`state` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_jftype` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`img` varchar(100) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_kfwset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`access_token` varchar(50) NOT NULL,
+`openid` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_llz` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`type` int(11) NOT NULL,
+`status` int(11) NOT NULL,
+`src` varchar(100) NOT NULL,
+`cityname` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_message` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`username` varchar(20) NOT NULL,
+`password` varchar(50) NOT NULL,
+`type` varchar(10) NOT NULL,
+`sender` varchar(20) NOT NULL,
+`signature` varchar(100) NOT NULL,
+`is_email` int(11) NOT NULL,
+`xd_tid` varchar(60) NOT NULL,
+`jd_tid` varchar(60) NOT NULL,
+`yy_tid` varchar(60) NOT NULL,
+`dm_tid` varchar(60) NOT NULL,
+`sj_tid` varchar(60) NOT NULL,
+`sj_tid2` varchar(60) NOT NULL,
+`wx_appid` varchar(60) NOT NULL,
+`wx_secret` varchar(60) NOT NULL,
+`is_dxyz` int(4) NOT NULL,
+`appkey` varchar(50) NOT NULL,
+`tpl_id` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`jj_tid` varchar(200) NOT NULL,
+`tk_tid` varchar(200) NOT NULL,
+`rzsh_tid` varchar(60) NOT NULL,
+`rzcg_tid` varchar(60) NOT NULL,
+`rzjj_tid` varchar(60) NOT NULL,
+`cz_tid` varchar(100) NOT NULL,
+`xdd_tid` varchar(200) NOT NULL,
+`xdd_tid2` varchar(200) NOT NULL,
+`qf_tid` varchar(200) NOT NULL,
+`qh_tid` varchar(100) NOT NULL,
+`item` int(4) NOT NULL,
+`appid` varchar(20) NOT NULL,
+`tx_appkey` varchar(50) NOT NULL,
+`template_id` varchar(10) NOT NULL,
+`sign` varchar(200) NOT NULL,
+`code` varchar(10) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_message2` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`note` varchar(100) NOT NULL,
+`source` varchar(100) NOT NULL,
+`content` varchar(100) NOT NULL,
+`time` varchar(100) NOT NULL,
+`fs_time` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`src` varchar(100) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_nav` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`title` varchar(20) NOT NULL,
+`title_color` varchar(20) NOT NULL,
+`title_color2` varchar(20) NOT NULL,
+`logo` varchar(200) NOT NULL,
+`logo2` varchar(200) NOT NULL,
+`url` varchar(200) NOT NULL,
+`num` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`xcx_name` varchar(50) NOT NULL,
+`appid` varchar(30) NOT NULL,
+`item` int(4) NOT NULL,
+`src2` varchar(255) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_number` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`code` varchar(10) NOT NULL,
+`num` varchar(30) NOT NULL,
+`people` int(4) NOT NULL,
+`state` int(4) NOT NULL,
+`time` datetime NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_numbertype` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`typename` varchar(30) NOT NULL,
+`sort` int(4) NOT NULL,
+`time` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_order` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`order_num` varchar(20) NOT NULL,
+`state` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`pay_time` varchar(20) NOT NULL,
+`jd_time` varchar(20) NOT NULL,
+`cancel_time` varchar(20) NOT NULL,
+`complete_time` varchar(20) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`box_money` decimal(10,2) NOT NULL,
+`ps_money` decimal(10,2) NOT NULL,
+`mj_money` decimal(10,2) NOT NULL,
+`xyh_money` decimal(10,2) NOT NULL,
+`tel` varchar(20) NOT NULL,
+`name` varchar(20) NOT NULL,
+`address` varchar(200) NOT NULL,
+`type` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`note` varchar(50) NOT NULL,
+`jj_note` varchar(50) NOT NULL,
+`area` varchar(20) NOT NULL,
+`lat` varchar(20) NOT NULL,
+`lng` varchar(20) NOT NULL,
+`del` int(11) NOT NULL,
+`pay_type` int(11) NOT NULL,
+`form_id` varchar(50) NOT NULL,
+`form_id2` varchar(50) NOT NULL,
+`code` varchar(100) NOT NULL,
+`order_type` int(11) NOT NULL,
+`delivery_time` varchar(20) NOT NULL,
+`sex` int(11) NOT NULL,
+`discount` decimal(10,2) NOT NULL,
+`tableware` int(11) NOT NULL,
+`dd_info` text NOT NULL,
+`uniacid` int(11) NOT NULL,
+`yhq_money` decimal(10,2) NOT NULL,
+`coupon_id` int(11) NOT NULL,
+`yhq_money2` decimal(10,2) NOT NULL,
+`coupon_id2` int(11) NOT NULL,
+`table_id` int(11) NOT NULL,
+`dn_state` int(11) NOT NULL,
+`dm_state` int(4) NOT NULL,
+`yy_state` int(11) NOT NULL,
+`deposit` decimal(10,2) NOT NULL,
+`ship_id` varchar(30) NOT NULL,
+`zk_money` decimal(10,2) NOT NULL,
+`is_dd` int(11) NOT NULL,
+`pt_info` text NOT NULL,
+`kfw_info` text NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_order_goods` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`img` varchar(200) NOT NULL,
+`number` int(11) NOT NULL,
+`order_id` int(11) NOT NULL,
+`name` varchar(20) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`dishes_id` int(11) NOT NULL,
+`spec` varchar(50) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`is_jc` int(11) NOT NULL,
+`is_qg` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_pay` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`mchid` varchar(20) NOT NULL,
+`wxkey` varchar(100) NOT NULL,
+`apiclient_cert` text NOT NULL,
+`apiclient_key` text NOT NULL,
+`ip` varchar(20) NOT NULL,
+`jf_proportion` int(11) NOT NULL,
+`integral` int(11) NOT NULL,
+`integral2` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_psset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`source_id` int(11) NOT NULL,
+`shop_no` varchar(20) NOT NULL,
+`store_id` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_qbmx` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`money` decimal(10,2) NOT NULL,
+`type` int(11) NOT NULL,
+`note` varchar(20) NOT NULL,
+`time` varchar(20) NOT NULL,
+`user_id` int(11) NOT NULL,
+`order_id` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_qggoods` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`logo` varchar(200) NOT NULL,
+`price` decimal(10,1) NOT NULL,
+`money` decimal(10,1) NOT NULL,
+`number` int(11) NOT NULL,
+`surplus` int(11) NOT NULL,
+`start_time` varchar(20) NOT NULL,
+`end_time` varchar(20) NOT NULL,
+`consumption_time` int(11) NOT NULL,
+`details` text NOT NULL,
+`store_id` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`type_id` int(11) NOT NULL,
+`img` text NOT NULL,
+`num` int(11) NOT NULL,
+`hot` int(11) NOT NULL,
+`state2` int(4) NOT NULL,
+`content` varchar(100) NOT NULL,
+`time` varchar(20) NOT NULL,
+`qg_num` int(4) NOT NULL,
+`type` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_qgorder` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`order_num` varchar(50) NOT NULL,
+`user_id` int(11) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`user_tel` varchar(20) NOT NULL,
+`store_id` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`good_id` int(11) NOT NULL,
+`pay_type` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`dq_time` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`code` varchar(100) NOT NULL,
+`good_name` varchar(20) NOT NULL,
+`good_logo` varchar(200) NOT NULL,
+`pay_time` varchar(20) NOT NULL,
+`hx_time` varchar(20) NOT NULL,
+`del` int(11) NOT NULL,
+`note` varchar(50) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_qgtype` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`state` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_reduction` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(50) NOT NULL,
+`full` int(11) NOT NULL,
+`reduction` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_reservation` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`store_id` int(10) unsigned NOT NULL,
+`time` varchar(200) NOT NULL,
+`label` varchar(50) NOT NULL,
+`num` int(11) unsigned NOT NULL,
+`dateline` int(10) unsigned NOT NULL,
+`uniacid` int(10) unsigned NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_retail` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`time` int(11) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`user_tel` varchar(20) NOT NULL,
+`state` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`sh_time` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_rzlog` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`time` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`note` varchar(30) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_rzqx` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`days` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_rzset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`cjwt` text NOT NULL,
+`rzxy` text NOT NULL,
+`is_ruzhu` int(11) NOT NULL,
+`is_img` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_service` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`store_id` int(11) NOT NULL,
+`pid` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+`time` varchar(50) NOT NULL,
+`dateline` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_shopcar` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`good_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+`spec` varchar(100) NOT NULL,
+`combination_id` int(11) NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`box_money` decimal(10,2) NOT NULL,
+`son_id` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`dr_id` int(11) NOT NULL,
+`is_qg` int(4) NOT NULL,
+`qg_name` varchar(20) NOT NULL,
+`qg_logo` varchar(500) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_signlist` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`integral` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`time2` int(11) NOT NULL,
+`time3` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_signset` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`one` int(11) NOT NULL,
+`integral` int(11) NOT NULL,
+`is_open` int(11) NOT NULL,
+`is_bq` int(11) NOT NULL,
+`bq_integral` int(11) NOT NULL,
+`details` text NOT NULL,
+`uniacid` int(11) NOT NULL,
+`qd_img` varchar(200) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_sms` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`appkey` varchar(100) NOT NULL,
+`wm_tid` int(11) NOT NULL,
+`dn_tid` int(11) NOT NULL,
+`tel` varchar(20) NOT NULL,
+`store_id` int(11) NOT NULL,
+`is_wm` int(11) NOT NULL,
+`is_dn` int(11) NOT NULL,
+`yy_tid` int(11) NOT NULL,
+`is_yy` int(11) NOT NULL,
+`item` int(4) NOT NULL,
+`appid` varchar(20) NOT NULL,
+`tx_appkey` varchar(50) NOT NULL,
+`template_id` varchar(50) NOT NULL,
+`sign` varchar(200) NOT NULL,
+`code` varchar(10) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_spec` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`good_id` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_spec_combination` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`wm_money` decimal(10,2) NOT NULL,
+`dn_money` decimal(10,2) NOT NULL,
+`combination` varchar(100) NOT NULL,
+`number` int(11) NOT NULL,
+`good_id` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_spec_val` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`spec_id` int(11) NOT NULL,
+`num` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`good_id` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_special` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`day` varchar(20) NOT NULL,
+`integral` int(11) NOT NULL,
+`title` varchar(20) NOT NULL,
+`color` varchar(20) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_store` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(50) NOT NULL,
+`address` varchar(200) NOT NULL,
+`time` varchar(20) NOT NULL,
+`time2` varchar(20) NOT NULL,
+`time3` varchar(20) NOT NULL,
+`time4` varchar(20) NOT NULL,
+`tel` varchar(20) NOT NULL,
+`announcement` varchar(200) NOT NULL,
+`is_rest` int(11) NOT NULL,
+`img` text NOT NULL,
+`start_at` varchar(20) NOT NULL,
+`freight` varchar(20) NOT NULL,
+`logo` varchar(200) NOT NULL,
+`details` text NOT NULL,
+`color` varchar(20) NOT NULL,
+`coordinates` varchar(50) NOT NULL,
+`yyzz` text NOT NULL,
+`md_area` int(11) NOT NULL,
+`md_type` int(11) NOT NULL,
+`sales` decimal(10,1) NOT NULL,
+`score` int(11) NOT NULL,
+`capita` int(11) NOT NULL,
+`tx_user` int(11) NOT NULL,
+`is_open` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`number` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
+`environment` text NOT NULL,
+`is_brand` int(11) NOT NULL,
+`state` int(4) NOT NULL,
+`rz_time` varchar(10) NOT NULL,
+`rzdq_time` varchar(20) NOT NULL,
+`sq_id` int(11) NOT NULL,
+`zm_img` varchar(255) NOT NULL,
+`fm_img` varchar(255) NOT NULL,
+`zf_state` int(4) NOT NULL,
+`code` varchar(50) NOT NULL,
+`link_name` varchar(20) NOT NULL,
+`link_tel` varchar(20) NOT NULL,
+`sq_time` datetime NOT NULL,
+`money` decimal(10,2) NOT NULL,
+`admin_id` int(11) NOT NULL,
+`is_mp3` int(1) NOT NULL,
+`is_video` int(1) NOT NULL,
+`store_mp3` varchar(1000) NOT NULL,
+`store_video` varchar(1000) NOT NULL,
+`ps_poundage` varchar(10) NOT NULL,
+`qrcode` varchar(300) NOT NULL,
+`is_select` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_storead` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`logo` varchar(200) NOT NULL,
+`src` varchar(100) NOT NULL,
+`src2` varchar(200) NOT NULL,
+`created_time` varchar(20) NOT NULL,
+`orderby` int(11) NOT NULL,
+`status` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`appid` varchar(20) NOT NULL,
+`title` varchar(20) NOT NULL,
+`xcx_name` varchar(20) NOT NULL,
+`item` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_storeset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`xyh_money` decimal(10,2) NOT NULL,
+`xyh_open` int(11) NOT NULL,
+`integral` int(11) NOT NULL,
+`integral2` int(11) NOT NULL,
+`is_jd` int(11) NOT NULL,
+`store_mp3` text NOT NULL,
+`store_video` text NOT NULL,
+`is_mp3` int(11) NOT NULL,
+`is_video` int(11) NOT NULL,
+`is_jfpay` int(11),
+`is_yuepay` int(11) NOT NULL,
+`is_yuejf` int(11) NOT NULL,
+`is_wxpay` int(11) NOT NULL,
+`poundage` int(11) NOT NULL,
+`is_pj` int(11) NOT NULL,
+`is_chzf` int(11) NOT NULL,
+`box_name` varchar(20) NOT NULL,
+`yhq_name` varchar(20) NOT NULL,
+`sy_name` varchar(20) NOT NULL,
+`dn_name` varchar(20) NOT NULL,
+`wm_name` varchar(20) NOT NULL,
+`yy_name` varchar(20) NOT NULL,
+`yhq_img` varchar(200) NOT NULL,
+`sy_img` varchar(200) NOT NULL,
+`dn_img` varchar(200) NOT NULL,
+`wm_img` varchar(200) NOT NULL,
+`yy_img` varchar(200) NOT NULL,
+`is_yhq` int(11) NOT NULL,
+`is_sy` int(11) NOT NULL,
+`is_dn` int(11) NOT NULL,
+`is_wm` int(11) NOT NULL,
+`is_yy` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`ps_time` varchar(20) NOT NULL,
+`ps_mode` varchar(20) NOT NULL,
+`ps_jl` int(11) NOT NULL,
+`is_zt` int(11) NOT NULL,
+`is_hdfk` int(11) NOT NULL,
+`print_type` int(4) NOT NULL,
+`ztxy` text NOT NULL,
+`top_style` int(11) NOT NULL,
+`info_style` int(11) NOT NULL,
+`yysm` varchar(20) NOT NULL,
+`wmsm` varchar(20) NOT NULL,
+`dnsm` varchar(20) NOT NULL,
+`sysm` varchar(20) NOT NULL,
+`is_wxzf` int(11) NOT NULL,
+`print_mode` int(4) NOT NULL,
+`is_yydc` int(11) NOT NULL,
+`is_ps` int(1) NOT NULL,
+`is_dd` int(11) NOT NULL,
+`is_cj` int(11) NOT NULL,
+`cj_name` varchar(20) NOT NULL,
+`wmps_name` varchar(20) NOT NULL,
+`is_czztpd` int(11) NOT NULL,
+`is_dcyhq` int(4) NOT NULL,
+`is_pt` int(4) NOT NULL,
+`pt_name` varchar(20) NOT NULL,
+`ptsm` varchar(100) NOT NULL,
+`pt_img` varchar(200) NOT NULL,
+`qg_name` varchar(20) NOT NULL,
+`qgsm` varchar(20) NOT NULL,
+`qg_img` varchar(200) NOT NULL,
+`is_qg` int(4) NOT NULL,
+`is_ydtime` int(4) NOT NULL,
+`is_yyzw` int(4) NOT NULL,
+`pd_name` varchar(30) NOT NULL,
+`pdsm` varchar(100) NOT NULL,
+`pd_img` varchar(255) NOT NULL,
+`is_pd` int(4) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_storetype` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`type_name` varchar(50) NOT NULL,
+`num` int(11) NOT NULL,
+`img` varchar(200) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`poundage` varchar(20) NOT NULL,
+`dn_poundage` varchar(20) NOT NULL,
+`dm_poundage` varchar(20) NOT NULL,
+`yd_poundage` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_system` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`appid` varchar(50) NOT NULL,
+`appsecret` varchar(50) NOT NULL,
+`url_name` varchar(20) NOT NULL,
+`details` text NOT NULL,
+`url_logo` varchar(200) NOT NULL,
+`color` varchar(20) NOT NULL,
+`link_name` varchar(20) NOT NULL,
+`link_logo` varchar(200) NOT NULL,
+`model` int(11) NOT NULL,
+`default_store` int(11) NOT NULL,
+`support` varchar(20) NOT NULL,
+`bq_logo` varchar(200) NOT NULL,
+`bq_name` varchar(50) NOT NULL,
+`map_key` varchar(100) NOT NULL,
+`tz_appid` varchar(30) NOT NULL,
+`tz_name` varchar(20) NOT NULL,
+`tel` varchar(20) NOT NULL,
+`dada_key` varchar(50) NOT NULL,
+`dada_secret` varchar(50) NOT NULL,
+`is_psxx` int(11) NOT NULL,
+`jfgn` int(11) NOT NULL,
+`msgn` int(11) NOT NULL,
+`fxgn` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`typeset` int(11) NOT NULL,
+`wm_name` varchar(20) NOT NULL,
+`dc_name` varchar(20) NOT NULL,
+`yd_name` varchar(20) NOT NULL,
+`gs_img` text NOT NULL,
+`gs_details` text,
+`gs_tel` varchar(200) NOT NULL,
+`gs_time` varchar(50) NOT NULL,
+`gs_add` varchar(200) NOT NULL,
+`gs_zb` varchar(50) NOT NULL,
+`is_brand` int(11) NOT NULL,
+`kfw_appid` varchar(50) NOT NULL,
+`kfw_appsecret` varchar(50) NOT NULL,
+`fl_more` int(11) NOT NULL,
+`tx_zdmoney` decimal(10,2) NOT NULL,
+`tx_notice` text NOT NULL,
+`is_tj` int(11) NOT NULL,
+`is_mdrz` int(4) NOT NULL,
+`md_sh` int(4) NOT NULL,
+`md_sf` int(4) NOT NULL,
+`rz_details` text NOT NULL,
+`rz_title` varchar(100) NOT NULL,
+`rz_ms` text NOT NULL,
+`countdown` int(11) NOT NULL,
+`distance` int(11) NOT NULL,
+`integral` int(11) NOT NULL,
+`integral2` int(11) NOT NULL,
+`is_jf` int(11) NOT NULL,
+`fx_title` varchar(200) NOT NULL,
+`is_hy` int(1) NOT NULL,
+`hygn` int(1) NOT NULL,
+`hy_discount` int(11) NOT NULL,
+`hy_details` text NOT NULL,
+`kt_details` text NOT NULL,
+`cz_notice` text NOT NULL,
+`is_cz` int(1) NOT NULL,
+`hy_note` text NOT NULL,
+`is_yuepay` int(11) NOT NULL,
+`ps_name` varchar(30) NOT NULL,
+`is_tzms` int(11) NOT NULL,
+`is_wx` int(4) NOT NULL,
+`is_yhk` int(4) NOT NULL,
+`is_sj` int(4) NOT NULL,
+`is_dada` int(4) NOT NULL,
+`is_kfw` int(4) NOT NULL,
+`is_pt` int(4) NOT NULL,
+`sh_time` int(4) NOT NULL,
+`ptgn` int(4) NOT NULL,
+`qggn` int(4) NOT NULL,
+`is_zb` int(4) NOT NULL,
+`is_qg` int(4) NOT NULL,
+`isyykg` int(4) NOT NULL,
+`zb_img` varchar(300) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_table` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(50) NOT NULL,
+`num` int(4) NOT NULL,
+`type_id` varchar(50) NOT NULL,
+`tag` varchar(50) NOT NULL,
+`orderby` int(11) NOT NULL,
+`status` int(4) NOT NULL,
+`uniacid` varchar(50) NOT NULL,
+`store_id` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_table_type` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(50) NOT NULL,
+`fw_cost` decimal(10,2) NOT NULL,
+`zd_cost` decimal(10,2) NOT NULL,
+`yd_cost` decimal(10,2) NOT NULL,
+`num` int(11) NOT NULL,
+`orderby` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`uniacid` varchar(50) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_txset` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`tx_money` decimal(10,2) NOT NULL,
+`tx_rate` int(11) NOT NULL,
+`tx_details` text NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_type` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`type_name` varchar(20) NOT NULL,
+`order_by` int(11) NOT NULL,
+`store_id` int(11) NOT NULL,
+`is_open` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_typead` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`logo` varchar(200) NOT NULL,
+`src` varchar(100) NOT NULL,
+`src2` varchar(200) NOT NULL,
+`created_time` varchar(20) NOT NULL,
+`orderby` int(11) NOT NULL,
+`status` int(11) NOT NULL,
+`type` int(11) NOT NULL,
+`appid` varchar(20) NOT NULL,
+`title` varchar(20) NOT NULL,
+`xcx_name` varchar(20) NOT NULL,
+`item` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_user` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(20) NOT NULL,
+`join_time` varchar(20) NOT NULL,
+`img` varchar(200) NOT NULL,
+`openid` text NOT NULL,
+`total_score` int(11) NOT NULL,
+`wallet` decimal(10,2) NOT NULL,
+`commission` decimal(10,2) NOT NULL,
+`day` int(11) NOT NULL,
+`order_money` decimal(10,2) NOT NULL,
+`order_number` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`dq_time` varchar(20) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`user_tel` varchar(20) NOT NULL,
+`hy_day` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_useradd` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`address` varchar(200) NOT NULL,
+`area` varchar(50) NOT NULL,
+`user_name` varchar(20) NOT NULL,
+`user_id` int(11) NOT NULL,
+`tel` varchar(20) NOT NULL,
+`is_default` int(11) NOT NULL,
+`sex` int(11) NOT NULL,
+`lat` varchar(20) NOT NULL,
+`lng` varchar(20) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_usercoupons` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
+`coupon_id` int(11) NOT NULL,
+`state` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`type` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_pintuan_withdrawal` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(10) NOT NULL,
+`username` varchar(100) NOT NULL,
+`type` int(11) NOT NULL,
+`time` varchar(20) NOT NULL,
+`sh_time` varchar(20) NOT NULL,
+`state` int(11) NOT NULL,
+`tx_cost` decimal(10,2) NOT NULL,
+`sj_cost` decimal(10,2) NOT NULL,
+`store_id` int(11) NOT NULL,
+`uniacid` int(11) NOT NULL,
+`yhk_num` varchar(20) NOT NULL,
+`tel` varchar(20) NOT NULL,
+`yh_info` varchar(100) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+]]></install>
+	<uninstall><![CDATA[DROP TABLE IF EXISTS `ims_pintuan_account`;
+DROP TABLE IF EXISTS `ims_pintuan_ad`;
+DROP TABLE IF EXISTS `ims_pintuan_area`;
+DROP TABLE IF EXISTS `ims_pintuan_assess`;
+DROP TABLE IF EXISTS `ims_pintuan_call`;
+DROP TABLE IF EXISTS `ims_pintuan_calllog`;
+DROP TABLE IF EXISTS `ims_pintuan_commission_withdrawal`;
+DROP TABLE IF EXISTS `ims_pintuan_continuous`;
+DROP TABLE IF EXISTS `ims_pintuan_coupons`;
+DROP TABLE IF EXISTS `ims_pintuan_couponset`;
+DROP TABLE IF EXISTS `ims_pintuan_cptj`;
+DROP TABLE IF EXISTS `ims_pintuan_czhd`;
+DROP TABLE IF EXISTS `ims_pintuan_czorder`;
+DROP TABLE IF EXISTS `ims_pintuan_distribution`;
+DROP TABLE IF EXISTS `ims_pintuan_drorder`;
+DROP TABLE IF EXISTS `ims_pintuan_dyj`;
+DROP TABLE IF EXISTS `ims_pintuan_dytag`;
+DROP TABLE IF EXISTS `ims_pintuan_earnings`;
+DROP TABLE IF EXISTS `ims_pintuan_formid`;
+DROP TABLE IF EXISTS `ims_pintuan_fxset`;
+DROP TABLE IF EXISTS `ims_pintuan_fxuser`;
+DROP TABLE IF EXISTS `ims_pintuan_goods`;
+DROP TABLE IF EXISTS `ims_pintuan_group`;
+DROP TABLE IF EXISTS `ims_pintuan_groupgoods`;
+DROP TABLE IF EXISTS `ims_pintuan_grouphx`;
+DROP TABLE IF EXISTS `ims_pintuan_grouporder`;
+DROP TABLE IF EXISTS `ims_pintuan_grouptype`;
+DROP TABLE IF EXISTS `ims_pintuan_help`;
+DROP TABLE IF EXISTS `ims_pintuan_hyorder`;
+DROP TABLE IF EXISTS `ims_pintuan_hyqx`;
+DROP TABLE IF EXISTS `ims_pintuan_integral`;
+DROP TABLE IF EXISTS `ims_pintuan_jfgoods`;
+DROP TABLE IF EXISTS `ims_pintuan_jfrecord`;
+DROP TABLE IF EXISTS `ims_pintuan_jftype`;
+DROP TABLE IF EXISTS `ims_pintuan_kfwset`;
+DROP TABLE IF EXISTS `ims_pintuan_llz`;
+DROP TABLE IF EXISTS `ims_pintuan_message`;
+DROP TABLE IF EXISTS `ims_pintuan_message2`;
+DROP TABLE IF EXISTS `ims_pintuan_nav`;
+DROP TABLE IF EXISTS `ims_pintuan_number`;
+DROP TABLE IF EXISTS `ims_pintuan_numbertype`;
+DROP TABLE IF EXISTS `ims_pintuan_order`;
+DROP TABLE IF EXISTS `ims_pintuan_order_goods`;
+DROP TABLE IF EXISTS `ims_pintuan_pay`;
+DROP TABLE IF EXISTS `ims_pintuan_psset`;
+DROP TABLE IF EXISTS `ims_pintuan_qbmx`;
+DROP TABLE IF EXISTS `ims_pintuan_qggoods`;
+DROP TABLE IF EXISTS `ims_pintuan_qgorder`;
+DROP TABLE IF EXISTS `ims_pintuan_qgtype`;
+DROP TABLE IF EXISTS `ims_pintuan_reduction`;
+DROP TABLE IF EXISTS `ims_pintuan_reservation`;
+DROP TABLE IF EXISTS `ims_pintuan_retail`;
+DROP TABLE IF EXISTS `ims_pintuan_rzlog`;
+DROP TABLE IF EXISTS `ims_pintuan_rzqx`;
+DROP TABLE IF EXISTS `ims_pintuan_rzset`;
+DROP TABLE IF EXISTS `ims_pintuan_service`;
+DROP TABLE IF EXISTS `ims_pintuan_shopcar`;
+DROP TABLE IF EXISTS `ims_pintuan_signlist`;
+DROP TABLE IF EXISTS `ims_pintuan_signset`;
+DROP TABLE IF EXISTS `ims_pintuan_sms`;
+DROP TABLE IF EXISTS `ims_pintuan_spec`;
+DROP TABLE IF EXISTS `ims_pintuan_spec_combination`;
+DROP TABLE IF EXISTS `ims_pintuan_spec_val`;
+DROP TABLE IF EXISTS `ims_pintuan_special`;
+DROP TABLE IF EXISTS `ims_pintuan_store`;
+DROP TABLE IF EXISTS `ims_pintuan_storead`;
+DROP TABLE IF EXISTS `ims_pintuan_storeset`;
+DROP TABLE IF EXISTS `ims_pintuan_storetype`;
+DROP TABLE IF EXISTS `ims_pintuan_system`;
+DROP TABLE IF EXISTS `ims_pintuan_table`;
+DROP TABLE IF EXISTS `ims_pintuan_table_type`;
+DROP TABLE IF EXISTS `ims_pintuan_txset`;
+DROP TABLE IF EXISTS `ims_pintuan_type`;
+DROP TABLE IF EXISTS `ims_pintuan_typead`;
+DROP TABLE IF EXISTS `ims_pintuan_user`;
+DROP TABLE IF EXISTS `ims_pintuan_useradd`;
+DROP TABLE IF EXISTS `ims_pintuan_usercoupons`;
+DROP TABLE IF EXISTS `ims_pintuan_withdrawal`;
+]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+
+</manifest>

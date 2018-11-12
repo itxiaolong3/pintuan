@@ -1,0 +1,182 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<link rel="stylesheet" type="text/css" href="../addons/pintuan/template/public/ygcss.css">
+<style type="text/css">
+    .storeset{border-bottom: 1px solid #eee;padding-bottom: 10px;}
+    .storesetfont{font-size: 14px;font-weight: bold;}
+    .ygstoreimg>.input-group:nth-child(1){float: left;width: 50%;margin-right: 30px;}
+    .ygstoreimg>.input-group:nth-child(2){float: left;width: 50px;}
+    .btn{padding: 7px 12px;}
+    .ygstoreimg>.input-group:nth-child(2)>img{width: 45px;height: 35px;margin-top: -7px;}
+    .wyheader{height: 40px;}
+        .ygmargin{margin-top: 10px;color: #999;}
+    input[type="radio"] + label::before {
+        content: "\a0"; /*不换行空格*/
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        width: 1em;
+        height: 1em;
+        margin-right: .4em;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        text-indent: .15em;
+        line-height: 1;
+    }
+    input[type="radio"]:checked + label::before {
+        background-color: #44ABF7;
+        background-clip: content-box;
+        padding: .1em;
+        border: 2px solid #44ABF7;
+    }
+    input[type="radio"] {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+    }
+</style>
+<ul class="nav nav-tabs">
+    <span class="ygxian"></span>
+    <div class="ygdangq">当前位置:</div>
+      <li><a href="{php echo $this->createWebUrl('store')}">栏目列表</a></li>
+    <li class="active"><a href="{php echo $this->createWebUrl('addstore')}">栏目添加</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+        <!--<input type="hidden" name="parentid" value="{$parent['id']}" />-->
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                <span class="ygxian"></span>
+                <div class="ygdangq">栏目编辑:</div>
+            </div>
+            <div class="panel-body panel">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="margin-right: 15px;"><font color="red">*</font>所属区域</label>
+                   <select class="col-sm-8" name="tid">
+                        {loop $area $key $item2}
+                        {if $item2['Cid']==$info['tid']}
+                        <option value="{$item2['Cid']}" selected="selected">{$item2['Name']}</option>
+                        {else}
+                        <option value="{$item2['Cid']}" >{$item2['Name']}</option>
+                        {/if}
+                        {/loop}
+                    </select>
+                    <div class="help-block col-md-8 col-md-offset-2">
+                        * 请选择栏目所在区域
+                    </div>
+                </div>
+              <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="margin-right: 15px;"><font color="red">*</font>发货地</label>
+                    <select class="col-sm-8" name="fid">
+                        {loop $warehome $key $item3}
+                        {if $item3['fid']==$info['fid']}
+                        <option value="{$item3['fid']}" selected="selected">{$item3['Name']}</option>
+                        {else}
+                        <option value="{$item3['fid']}" >{$item3['Name']}</option>
+                        {/if}
+                        {/loop}
+                    </select>
+                    <div class="help-block col-md-8 col-md-offset-2">
+                        * 请选择栏目发货地
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="number" class="form-control" value="{$info['number']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>栏目名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Name" class="form-control" value="{$info['Name']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>描述（首页显示）</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">
+                            <textarea name="Desindex" class="form-control"  cols="30" rows="7">{$info['Desindex']}</textarea>
+                        </p>
+                        <div style="color: #999;">*在首页页面显示栏目描述</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>描述（详细中显示）</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">
+                            <textarea name="Description" class="form-control"  cols="30" rows="7">{$info['Description']}</textarea>
+                        </p>
+                        <div style="color: #999;">*在栏目详细页面显示</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">栏目状态</label>
+                    <div class="col-sm-9">
+                        <select class="col-sm-5" id="test" name="HasNewItems" autocomplete="off">
+                            <option value="0" {if $info['HasNewItems']=='0'} selected {/if}>开启</option>
+                            <option value="1" {if $info['HasNewItems']=='1'} selected {/if}>关闭</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group control_0">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>描述状态文字</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Content" class="form-control" value="{$info['Content']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red"></font>发布人名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="ShopUserName" class="form-control" value="{$info['ShopUserName']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>栏目logo</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('ShopUserID',$info['ShopUserID'])}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>封面图片</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('AppCover',$info['AppCover'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><font color="red">*</font>封面视频</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_video('Video',$info['Video'])}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <div class="form-group">
+            <input type="submit" name="submit" value="提交" class="btn col-lg-3" style="color: white;background-color: #44ABF7;margin-left: 30%;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        // $("#frame-0").addClass("in");
+        $("#frame-0").show();
+        $("#yframe-0").addClass("wyactive");
+        select();
+        $("#test").change(function(){
+            select()
+        })
+        function select(){
+            var options=$("#test option:selected").val(); //获取选中的项
+            if(options==1){
+                $(".control_0").show()
+            }else{
+                $(".control_0").hide()
+            }
+        }
+    })
+</script>
+

@@ -1,0 +1,106 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<link rel="stylesheet" type="text/css" href="../addons/pintuan/template/public/ygcss.css">
+<style type="text/css">
+    input[type="radio"] + label::before {
+        content: "\a0"; /*不换行空格*/
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        width: 1em;
+        height: 1em;
+        margin-right: .4em;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        text-indent: .15em;
+        line-height: 1;
+    }
+    input[type="radio"]:checked + label::before {
+        background-color: #44ABF7;
+        background-clip: content-box;
+        padding: .1em;
+        border: 2px solid #44ABF7;
+    }
+    input[type="radio"] {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+    }
+    .ygmargin{margin-top: 10px;color: #999;}
+</style>
+<ul class="nav nav-tabs">
+    <span class="ygxian"></span>
+    <div class="ygdangq">当前位置:</div>
+    <li><a href="{php echo $this->createWebUrl('ad')}">轮播图列表</a></li>
+    <li class="active"><a href="{php echo $this->createWebUrl('addad')}">添加轮播图</a></li>
+</ul>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+        <!--<input type="hidden" name="parentid" value="{$parent['id']}" />-->
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                内容编辑
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">所在地区</label>
+                    <div class="col-sm-9">
+                        <select name="aid" class="col-md-4" id="aid">
+                            {loop $areainfo $row}
+                            <option value="{$row['Cid']}" {if $row['Cid']==$info['aid']}selected{/if}>{$row['Name']}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" id="lanmu">跳转到指定栏目</label>
+                    <div class="col-sm-9">
+                        <select name="lmid" class="col-md-4" id="lmid">
+                            {loop $lanmuinfo $row}
+                            <option value="{$row['QsID']}" {if $row['QsID']==$info['Content']}selected{/if}>{$row['Name']}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">图片</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('logo', $info['ImageUrl'])}
+                        <div class="ygmargin">*首页轮播图建议宽高750*360px</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="comment" class="form-control" value="{$info['comment']}" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <input type="submit" name="submit" value="提交" class="btn col-lg-3" style="color: white;background-color: #44ABF7;margin-left: 30%;"/>
+            <input type="hidden" name="token" value="{$_W['token']}" />
+            <input type="hidden" name="id" value="{$info['id']}" />
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('#form1').submit(function(){
+            if (!$.trim(!$.trim($("#area").val()))) {
+                util.message('请选择所在区域', '', 'error');
+                return false;
+            }
+            if (!$.trim(!$.trim($("#lanmu").val()))) {
+                util.message('选择栏目', '', 'error');
+                return false;
+            }
+            return true;
+        });
+        // $("#frame-2").addClass("in");
+        $("#frame-2").show();
+        $("#yframe-2").addClass("wyactive");
+    })
+</script>

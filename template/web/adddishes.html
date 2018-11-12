@@ -1,0 +1,388 @@
+{template 'public/header'}
+{template 'public/comhead'}
+<style>
+.panel-default>.wyheader{font-weight: bold;background-color: #F3F3F3;}
+  .chongzhi{margin-bottom: 10px;height: 35px;padding: 0px;}
+  .ygminp,.man2,.man,.man3,.money,.money2{
+    float: left;
+    border:1px solid #eee;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: white;
+  }
+  .man{
+    padding: 0px 12px;
+    text-align: center;
+    background-color: #f2f2f2;
+  }
+  .man3{
+    padding: 0px 5px;
+    width: 100px;
+    background-color: #f2f2f2;
+  }
+  .man3>span{float: right;}
+  .man2{
+    width: 130px;
+    padding: 0px 12px;
+    text-align: center;
+  }
+  .man4{
+    float: left;
+    height: 34px;
+    border-radius: 0px;
+    line-height: 20px;
+  }
+  .money{
+    width: 60%;
+    text-indent: 1em;
+  }
+  .money2{
+    width: 70%;
+    text-indent: 1em;
+  }
+  .ygminp{
+    padding: 0 15px;
+  }
+  .shanchu{
+    color: white;
+    background-color: #ED5565;
+    cursor: pointer;
+  }
+  .fa-plus{margin-right: 5px;}
+  .tianj1{
+    cursor: pointer;
+  }
+  .formbox1{border:1px solid #eee;padding-top: 20px;padding-bottom: 20px;background-color: #f2f2f2;margin-top: 10px;margin-bottom: 10px;}
+  .sizecon{
+    display: none;
+  }
+  .sizetop{
+    color: #666;
+    line-height: 20px;
+  }
+  .sizetop .size{
+    height: 20px;
+    line-height: 20px;
+  }
+  .sizetop .size input{
+    margin-right:5px; 
+    float: left;
+  }
+  .sizetop p{
+    color: #999;
+  }
+  .explain{
+    display: none;
+    border-radius: 5px;
+    color: #00c1de;
+    background-color: #dff6fa;
+    border:1px solid #c1e7ee;
+    padding-top: 10px;
+    margin-bottom: 15px;
+  }
+  .yginter,.table2{padding: 0px;}
+  .guigebox>.form-group{margin-bottom: 8px;}
+  .addgui{margin: 20px 0;}
+  .table{background-color: #F2F2F2;font-size: 12px;}
+  .table>thead>tr{background-color: #eae9e9;}
+  .table>thead>tr>th{padding: 5px;vertical-align: middle;text-align: left;min-width: 68px;border:none;}
+  .table>tbody>tr>td{border:none;padding: 5px;vertical-align: middle;}
+  .kucun{text-align: center;padding-bottom: 10px;}
+  .input-group-addon{background-color: white;}
+  .disbtn{border:none;background-color: #F2F2F2;}
+  #lv_table_con{padding: 0px;margin-top: 20px;}
+  .xiainp1,.xiainp2{font-weight: normal;}
+  .shcg,.czcg{
+    position: fixed;
+    top: 10px;
+    left: 10%;
+    display: none;
+    z-index: 100;
+  }
+  .table .disbtn,.table>thead>tr>.guigebig{text-align: center;}
+  .navback{width: 0}
+  .main{margin: 16px 0px 30px 45px;}
+  .nav_box{
+      left: 150px;
+      top: 48px;
+      bottom: 0;
+      color: #333;
+      border-right: 1px solid #efefef;
+      text-align: center;
+      position: fixed;
+      background: #fff;
+      z-index: 99;   
+      padding:0;     
+  }
+  .left_nav{
+      padding-top: 20px
+  }
+  .left_nav li{
+      line-height: 45px;
+  }
+  .left_nav li.active{
+      color: #00aeff;
+      background: #edf6ff
+  }
+  .left_nav li:hover{
+      background: #edf6ff;
+  }
+  .left_nav li:hover a{
+      color: #00aeff;
+  } 
+</style>
+<link rel="stylesheet" type="text/css" href="../addons/pintuan/template/public/ygcss.css">
+<div class="nav_box col-md-1">
+    <ul class="left_nav">
+      <li><a href="{php echo $this->createWebUrl('dishes2')}">商品列表</a></li>
+      <li class="active"><a href="javascript:void(0);">添加/编辑商品</a></li> 
+    </ul>
+</div>
+
+
+<div class="main">
+    <form action="{php echo $this->createWebUrl('addgood')}" method="post" class="form-horizontal form" enctype="multipart/form-data"  id="form1">
+        <div class="panel panel-default ygdefault">
+            <div class="panel-heading wyheader">
+                内容编辑
+            </div>
+            <div class="panel-body">
+                <input type="hidden" name="storeid" value="{$storeid}">
+                <div class="col-md-12 czcg">
+                  <div class="col-md-8 col-md-push-2 btn btn-sm btn-success">操作成功！</div>
+                </div>
+                <div class="col-md-12 shcg">
+                  <div class="col-md-8 col-md-push-2 btn btn-sm btn-danger">删除成功！</div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="margin-right: 15px;">所属大厦</label>
+                    <select class="col-sm-8" id="printing_label" name="StallsName">
+                        {loop $bighome $key $item}
+                        {if $item['bid']==$info['StallsName']}
+                        <option value="{$item['bid']}" selected="selected">{$item['hname']}</option>
+                        {else}
+                        <option value="{$item['bid']}" >{$item['hname']}</option>
+                        {/if}
+                        
+                        {/loop}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="margin-right: 15px;">所在分类</label>
+                    <select class="col-sm-8" id="onefenlei" name="tid">
+                        {loop $type $key $item2}
+                        {if $item2['ID']==$info['tid']}
+                        <option value="{$item2['ID']}" selected="selected">{$item2['Name']}</option>
+                        {else}
+                        <option value="{$item2['ID']}" >{$item2['Name']}</option>
+                        {/if}
+                        {/loop}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">商品名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Title" id="goodname" class="form-control" value="{$info['Title']}" />
+                    </div>
+                </div>                                       
+                <div class="form-group">
+                    <label class="col-md-2 control-label">商品封面</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_image('Itemcover', $info['Itemcover'])}
+                        <span class="help-block">* 建议尺寸大小:325*325px</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">商品价格</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="goodpice" name="Price" class="form-control" value="{$info['Price']}" />
+                    </div>
+                </div>
+             
+                <div class="form-group">
+                    <label class="col-md-2 control-label">已拼数</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="pingnum" name="DealCount" class="form-control" value="{$info['DealCount']}" onKeyUp="value=value.replace(/[^\d]/g,'')"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">商品销量</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="flxiao" name="TotalQty" class="form-control" value="{$info['TotalQty']}" onKeyUp="value=value.replace(/[^\d]/g,'')"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">展示视频</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_video('Videos',$info['Videos'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">上架状态</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input type="radio" id="emailwy1" name="Statu" value="1" {if $info['Statu']==1}checked{/if} />
+                            <label for="emailwy1">上架</label>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" id="emailwy2" name="Statu" value="2" {if $info['Statu']==2 || empty($info['Statu'])}checked{/if} />
+                            <label for="emailwy2">下架</label>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">商品图片集</label>
+                    <div class="col-sm-9">
+                        {php echo tpl_form_field_multi_image('Images', $info['Images']);}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">颜色</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Colors" id="colors" placeholder="多钟颜色以/分隔" class="form-control" value="{$info['Color']}" />
+                    </div>
+                </div>
+              <div class="form-group">
+                    <label class="col-md-2 control-label">尺寸</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Sizes" id="sizes" placeholder="多个尺寸以/分隔" class="form-control" value="{$info['Sizes']}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">商品标签</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Tag" id="Tag" placeholder="多钟标签以/分隔" class="form-control" value="{$info['Tag']}" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+<div class="form-group">
+    <input type="submit" name="submit" value="提交" class="btn col-lg-3" style="color: white;background-color: #44ABF7;margin-left: 30%;"/>
+    <input type="hidden" name="token" value="{$_W['token']}" />
+    <input type="hidden" name="good_id" value="{$info['gID']}">
+</div>
+    </form>
+
+</div>
+<script type="text/javascript">
+    var namenum = 0;
+    $(function(){
+      var good_id = $("input[name='good_id']").val();
+        $("#frame-2").show();
+        $("#yframe-2").addClass("wyactive");
+      $('#form1').submit(function(){
+            if(!$.trim($(':text[name="Title"]').val())) {
+                util.message('请填写商品名称', '', 'error');
+                return false;
+            }
+            if(!$.trim($(':text[name="Itemcover"]').val())) {
+                util.message('请上传商品封面', '', 'error');
+                return false;
+            }
+            if(!$.trim($('#goodpice').val())) {
+                util.message('商品价格不可为空并且大于0', '', 'error');
+                return false;
+            }
+            return true;
+        });
+        //提交
+        $("#savebtn").on('click', function(){
+          var fenlei = $('#onefenlei option:selected').val();//所属分类
+          var goodname = $("#goodname").val();//商品名称
+          var goodpice = $("#goodpice").val();//商品价格
+          var pingnum = $("#pingnum").val();//已拼数量
+          var TotalQty = $("#flxiao").val();//总销量
+          var Colors = $("#colors").val();//颜色
+          var Tag = $("#Tag").val();//标签
+          var logo = $("input[name='logo']").val();//商品封面图片
+          var Videos = $("input[name='Videos']").val();//展示视频
+          var Images = $("input[name='Images']").val();//图片集
+          var storeid = $("input[name='storeid']").val();
+          var statu = $('input[name="is_show"]:checked').val();
+          var bighome=$("#printing_label option:selected").val();// 所属大厦id
+          	var title = ''
+          	if(goodname==''){
+          		title = '请输入商品名称'
+          	}else if(logo==''){
+          		title = '请上传商品封面'
+          	}else if(goodpice==''){
+          		title = '请输入商品价格'
+          	}
+
+           	if(title!=''){
+           		alert(title)
+           	}else{
+           		 if(good_id==''){//如果good是空的就调用添加接口
+              $.ajax({
+                type:"post",
+                 url:"{$_W['siteroot']}/app/index.php?i={$_W['uniacid']}&c=entry&do=AddGood&m=pintuan",
+                dataType:"text",
+                data:{                  
+                    storeid:storeid,
+                    tid:fenlei,//所属分类：
+                    Title:goodname,//商品名称：
+                    Itemcover:logo,//商品logo的值：
+                    Price:goodpice,//商品价格：
+                    DealCount:pingnum,//已拼数量：
+                    StallsName:bighome, //所在大厦
+                    Statu:statu,//状态
+                    TotalQty:TotalQty,//总销量
+                    Videos:Videos,//视频
+                    Images:Images,//图片集
+                    Colors:Colors,//图片集
+                    Tag:Tag,//标签
+
+                },
+                success:function(data){
+                    // var data = eval('(' + data + ')');
+                     console.log(data);
+                    $(".czcg").fadeIn()
+                    setTimeout(function(){
+                        $(".czcg").fadeOut();
+                        location.reload();
+                    },1500)
+                }
+              })
+            }else{//如果good是有值的就调用修改接口
+              $.ajax({
+                type:"post",
+                url:"{$_W['siteroot']}/app/index.php?i={$_W['uniacid']}&c=entry&do=UpdGood&m=pintuan",
+                dataType:"text",
+                data:{
+                    good_id:good_id,//商品id
+                    storeid:storeid,
+                    tid:fenlei,//所属分类：
+                    Title:goodname,//商品名称：
+                    Itemcover:logo,//商品logo的值：
+                    Price:goodpice,//商品价格：
+                    DealCount:pingnum,//已拼数量：
+                    StallsName:bighome, //所在大厦
+                    Statu:statu,//状态
+                    TotalQty:TotalQty,//总销量
+                    Videos:Videos,//视频
+                    Images:Images,//图片集
+                    Colors:Colors,//图片集
+                    Tag:Tag,//标签
+                },
+                success:function(data){
+                    // var data = eval('(' + data + ')');
+                    console.log(data);
+                    $(".czcg").fadeIn()
+                    setTimeout(function(){
+                        $(".czcg").fadeOut();
+                        location.reload();
+                    },1500)
+                }
+              })
+            }
+           	}
+        })
+
+    });        
+</script>

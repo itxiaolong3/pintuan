@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="36b74340-813a-440d-a2e1-d33e655a08a5" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="manifest.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../pintuan/manifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../pintuan/site.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="936">
+              <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="41" />
+              <folding>
+                <marker date="1539683017744" expanded="true" signature="434:543" ph="select 1 fro... ${tablename('cjdc_order')}" />
+                <marker date="1539683017744" expanded="true" signature="4267:4437" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="4500:4671" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="4734:4887" ph="select sum(p... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="4951:5069" ph="select sum(m... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="5227:5379" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="5456:5609" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="5685:5816" ph="select * fro... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="5893:5993" ph="select * fro... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="6702:6872" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="6935:7106" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="7169:7322" ph="select sum(p... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="7386:7504" ph="select sum(m... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="7662:7814" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="7890:8043" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="8119:8250" ph="select * fro... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="8327:8427" ph="select * fro... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+                <marker date="1539683017744" expanded="true" signature="10314:10515" ph="select id,na... ${tablename('cjdc_user')}" />
+                <marker date="1539683017744" expanded="true" signature="10536:10712" ph="select id,na... ${tablename('cjdc_user')}" />
+                <marker date="1539683017744" expanded="true" signature="12369:12570" ph="select id,na... ${tablename('cjdc_user')}" />
+                <marker date="1539683017744" expanded="true" signature="12591:12767" ph="select id,na... ${tablename('cjdc_user')}" />
+                <marker date="1539683017744" expanded="true" signature="33639:33879" ph="select id,na... ${tablename('cjdc_user')}" />
+                <marker date="1539683017744" expanded="true" signature="35716:35848" ph="select id,na... ${tablename('cjdc_store')}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.func.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../pintuan/admin/common/common.func.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="88" column="59" lean-forward="false" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+              <folding>
+                <marker date="1539683019115" expanded="true" signature="1305:1682" ph="..." />
+                <marker date="1539683019115" expanded="true" signature="1359:1671" ph="{...}" />
+                <marker date="1539683019115" expanded="true" signature="1498:1669" ph="{...}" />
+                <marker date="1539683019115" expanded="true" signature="2278:2381" ph="SELECT * FRO... ${tablename(&quot;pintuan_account&quot;)}" />
+                <marker date="1539683019115" expanded="true" signature="3157:3285" ph="SELECT name,... ${tablename('core_menu')}" />
+                <marker date="1539683019115" expanded="true" signature="3623:3735" ph="SELECT type ${tablename('users_permission')}" />
+                <marker date="1539683019115" expanded="true" signature="5968:6041" ph="SELECT modul... " />
+                <marker date="1539683019115" expanded="true" signature="7290:7296" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="7296:7302" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="7438:7444" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="7444:7450" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="7796:7802" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="7802:7808" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="7994:8000" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8000:8006" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8325:8331" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8331:8337" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8522:8528" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8528:8534" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8724:8730" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="8730:8736" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="9186:9192" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="9192:9198" ph=" " />
+                <marker date="1539683019115" expanded="true" signature="10431:10509" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>zh_cjdianc</find>
+      <find>ims_cjdc</find>
+      <find>cjdc_</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>ims_pintuan</replace>
+      <replace>pintuan</replace>
+      <replace>pintuan_</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>E:\小程序项目\拼团\pintuan</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../pintuan/admin/common/template.func.php" />
+        <option value="$PROJECT_DIR$/../pintuan/admin/source/user/login.ctrl.php" />
+        <option value="$PROJECT_DIR$/../pintuan/admin/themes/default/common/header-base.html" />
+        <option value="$PROJECT_DIR$/../pintuan/admin/themes/default/common/header-gw.html" />
+        <option value="$PROJECT_DIR$/../pintuan/admin/themes/default/user/login.html" />
+        <option value="$PROJECT_DIR$/../pintuan/cert/WxPay.Api.php" />
+        <option value="$PROJECT_DIR$/../pintuan/cert/WxPay.Data.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/func/core.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/addtable.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/countadd.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dishes2.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dladdtable.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dldishes2.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dlfinance.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dlinorder.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dlinydorder.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/inc/web/dlstoreinfo.inc.php" />
+        <option value="$PROJECT_DIR$/../pintuan/admin/common/common.func.php" />
+        <option value="$PROJECT_DIR$/../pintuan/manifest.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="439" />
+    <option name="y" value="54" />
+    <option name="width" value="1346" />
+    <option name="height" value="871" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="zh_cjdianc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pintuan" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="zh_cjdianc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pintuan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="inc" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="zh_cjdianc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pintuan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="inc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="func" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\小程序项目\拼团\pintuan" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="36b74340-813a-440d-a2e1-d33e655a08a5" name="Default" comment="" />
+      <created>1539677260024</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539677260024</updated>
+      <workItem from="1539677264767" duration="4862000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4862000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="439" y="54" width="1346" height="871" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1251944" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882273" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../pintuan/icon.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/developer.cer">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/icon-custom.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/admin/common/template.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/admin/source/user/login.ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="106" column="86" lean-forward="false" selection-start-line="106" selection-start-column="86" selection-end-line="106" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/admin/themes/default/common/header-base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="44" column="69" lean-forward="false" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/admin/themes/default/common/header-gw.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="113" column="44" lean-forward="false" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/admin/themes/default/user/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/cert/WxPay.Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/cert/WxPay.Data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/addtable.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/countadd.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="64" column="31" lean-forward="false" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dishes2.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="58" column="35" lean-forward="false" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dladdtable.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dldishes2.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="63" column="33" lean-forward="false" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dlfinance.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="143" column="59" lean-forward="false" selection-start-line="143" selection-start-column="59" selection-end-line="143" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dlinorder.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="188" column="20" lean-forward="false" selection-start-line="188" selection-start-column="20" selection-end-line="188" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dlinydorder.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="55" column="111" lean-forward="false" selection-start-line="55" selection-start-column="111" selection-end-line="55" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/web/dlstoreinfo.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2209">
+          <caret line="159" column="52" lean-forward="true" selection-start-line="159" selection-start-column="52" selection-end-line="159" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/inc/func/core.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" column="84" lean-forward="false" selection-start-line="23" selection-start-column="84" selection-end-line="23" selection-end-column="84" />
+          <folding>
+            <marker date="1539683023449" expanded="true" signature="549:563" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="1014:1028" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="1888:1902" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="2521:2535" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="3044:3076" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="4007:4021" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="4578:4592" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="5991:6005" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="6681:6695" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="7328:7342" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="8024:8038" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="9453:9467" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="10083:10097" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="10547:10561" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="10929:10943" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="12183:12197" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="13680:13694" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="14018:14050" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="14922:14936" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="16083:16097" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="16764:16778" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="17401:17415" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="17807:17821" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="18455:18487" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="18965:18997" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="19463:19477" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="21262:21276" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="21775:21789" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="22411:22425" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="23472:23486" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="23873:23887" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="26158:26172" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="27350:27364" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="27682:27707" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="27956:27970" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="28497:28522" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="29382:29414" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="29982:30014" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="30591:30616" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="30918:30932" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="31532:31546" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="32310:32324" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="33381:33395" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="33816:33841" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="34579:34593" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="35257:35271" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="36512:36526" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="36857:36882" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="37178:37192" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="37715:37740" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="38589:38621" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="39153:39178" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="39421:39435" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="40424:40438" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="40803:40828" ph="..." />
+            <marker date="1539683023449" expanded="true" signature="44448:44517" ph="SELECT * FRO... ${tablename('cjdc_store')}" />
+            <marker date="1539683023449" expanded="true" signature="45701:45850" ph="select a.nam... ${tablename('cjdc_table')}" />
+            <marker date="1539683023449" expanded="true" signature="52368:52517" ph="select a.nam... ${tablename('cjdc_table')}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/admin/common/common.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="88" column="59" lean-forward="false" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+          <folding>
+            <marker date="1539683019115" expanded="true" signature="1305:1682" ph="..." />
+            <marker date="1539683019115" expanded="true" signature="1359:1671" ph="{...}" />
+            <marker date="1539683019115" expanded="true" signature="1498:1669" ph="{...}" />
+            <marker date="1539683019115" expanded="true" signature="2278:2381" ph="SELECT * FRO... ${tablename(&quot;pintuan_account&quot;)}" />
+            <marker date="1539683019115" expanded="true" signature="3157:3285" ph="SELECT name,... ${tablename('core_menu')}" />
+            <marker date="1539683019115" expanded="true" signature="3623:3735" ph="SELECT type ${tablename('users_permission')}" />
+            <marker date="1539683019115" expanded="true" signature="5968:6041" ph="SELECT modul... " />
+            <marker date="1539683019115" expanded="true" signature="7290:7296" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="7296:7302" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="7438:7444" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="7444:7450" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="7796:7802" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="7802:7808" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="7994:8000" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8000:8006" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8325:8331" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8331:8337" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8522:8528" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8528:8534" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8724:8730" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="8730:8736" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="9186:9192" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="9192:9198" ph=" " />
+            <marker date="1539683019115" expanded="true" signature="10431:10509" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/site.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="41" />
+          <folding>
+            <marker date="1539683017744" expanded="true" signature="434:543" ph="select 1 fro... ${tablename('cjdc_order')}" />
+            <marker date="1539683017744" expanded="true" signature="4267:4437" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="4500:4671" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="4734:4887" ph="select sum(p... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="4951:5069" ph="select sum(m... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="5227:5379" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="5456:5609" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="5685:5816" ph="select * fro... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="5893:5993" ph="select * fro... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="6702:6872" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="6935:7106" ph="select sum(m... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="7169:7322" ph="select sum(p... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="7386:7504" ph="select sum(m... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="7662:7814" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="7890:8043" ph="select * fro... ${tablename(&quot;cjdc_order&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="8119:8250" ph="select * fro... ${tablename(&quot;cjdc_ydorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="8327:8427" ph="select * fro... ${tablename(&quot;cjdc_dmorder&quot;)}" />
+            <marker date="1539683017744" expanded="true" signature="10314:10515" ph="select id,na... ${tablename('cjdc_user')}" />
+            <marker date="1539683017744" expanded="true" signature="10536:10712" ph="select id,na... ${tablename('cjdc_user')}" />
+            <marker date="1539683017744" expanded="true" signature="12369:12570" ph="select id,na... ${tablename('cjdc_user')}" />
+            <marker date="1539683017744" expanded="true" signature="12591:12767" ph="select id,na... ${tablename('cjdc_user')}" />
+            <marker date="1539683017744" expanded="true" signature="33639:33879" ph="select id,na... ${tablename('cjdc_user')}" />
+            <marker date="1539683017744" expanded="true" signature="35716:35848" ph="select id,na... ${tablename('cjdc_store')}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pintuan/manifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
