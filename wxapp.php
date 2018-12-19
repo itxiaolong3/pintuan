@@ -60,6 +60,17 @@ class pintuanModuleWxapp extends WeModuleWxapp {
     }
     /////////////////////////////////////////////////////////
     //我的接口
+    //获取专栏下的商品数据
+    public function  doPageGetgoodapi(){
+        global $_GPC, $_W;
+        $getlid=$_GPC['zid'];//专栏id
+        if(!empty($getlid)){
+            $resdata['result']=pdo_getall('pintuan_goodmy',array('zid'=>$getlid));
+        }else{
+            $resdata['result']=pdo_getall('pintuan_goodmy',array());
+        }
+        echo json_encode($resdata);
+    }
     //保存用户的openid
     public function doPageSavaopenid(){
         global $_GPC, $_W;
@@ -172,13 +183,13 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $indexnum=$_GPC['pageIndex']-1;
         //每页数量
         $everynum=$_GPC['pagesize'];
-         //只需要列表需要分页
+        //只需要列表需要分页
         //if($getstate==0){
-           $limits= " limit " . $everynum * $indexnum . ',' . $everynum;
-       // }else{
-       // //    $limits='';
-       // }
-     $filterValues=htmlspecialchars_decode($_GPC['filterValues']);
+        $limits= " limit " . $everynum * $indexnum . ',' . $everynum;
+        // }else{
+        // //    $limits='';
+        // }
+        $filterValues=htmlspecialchars_decode($_GPC['filterValues']);
         $filterValuesarr=json_decode($filterValues,true);
         $MaxPrice=$filterValuesarr['MaxPrice']?$filterValuesarr['MaxPrice']:100000;
         $MinPrice=$filterValuesarr['MinPrice']?$filterValuesarr['MinPrice']:0;
@@ -224,7 +235,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         // $sql="select * from " . tablename("pintuan_goodmy") .$where.$getlid.$orders;
         //如果是搜索进来的
         $keyword=$_GPC['key'];
-       
+
         if ($getstate==1){//搜索的
             $where="WHERE uniacid=:uniacid and isdelete=0 and Statu=1 and Title LIKE  concat('%', :name,'%') ";
             $data[':name']=$keyword;
@@ -272,7 +283,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
             $allgood[$k]['tips']="已拼".$v['DealCount']."件,我也要拼！";
         }
         $alldata['Data']['NewItems']=$allgood;
-      
+
         echo json_encode($alldata);
     }
     //筛选
@@ -337,7 +348,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $data['Data']['Panels'][1]['selected']=true;
         $data['Data']['Panels'][1]['TypeID']=2;
         //价格范围
-      $price=array(
+        $price=array(
             ['ID'=>1,'Name'=>"0-50",'selected'=>false],
             ['ID'=>2,'Name'=>"50-200",'selected'=>false],
             ['ID'=>3,'Name'=>"200-500",'selected'=>false]
@@ -348,7 +359,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $data['Data']['Panels'][2]['selected']=true;
         $data['Data']['Panels'][2]['TypeID']=3;
         //货期情况
-       $huoqi=array(
+        $huoqi=array(
             ['ID'=>1,'Name'=>"现货",'selected'=>false],
             ['ID'=>2,'Name'=>"排单7天内",'selected'=>false],
             ['ID'=>3,'Name'=>"排单15天内",'selected'=>false]
@@ -525,7 +536,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         }
 
     }
-   
+
     //短信验证码,聚合或者腾讯云的或者阿里云的
     public function doPageSmscode(){
         global $_W, $_GPC;
@@ -742,18 +753,16 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         //剔除重复fid
         $dealfid=array_unique($fidarr);
         $fidarr=array_merge($dealfid);
-
         $items=array();//有效商品集合
         foreach ($fidarr as $k=>$v){
             $itemidarr=array();//剔除重复id
-            $Itemid=pdo_getall('pintuan_cart', array('fid' => $v['fid'],'cUid'=>$uid), array('Itemid'));
+            $Itemid=pdo_getall('pintuan_cart', array('fid' => $v,'cUid'=>$uid), array('Itemid'));
             foreach ($Itemid as $k1=>$v1){
                 array_push($itemidarr,$v1['Itemid']);
             }
             $dealitemid=array_unique($itemidarr);
             $Itemid=array_merge($dealitemid);
-
-            $getname=pdo_get('pintuan_warehome', array('fid' => $v['fid']), array('Name'));
+            $getname=pdo_get('pintuan_warehome', array('fid' => $v), array('Name'));
             foreach ($Itemid as $kk=>$vv){
                 $getgood=pdo_get('pintuan_goodmy', array('gID' => $vv));
                 $items[$k]['TimeList'][0]["Items"][$kk]['AgentItemID']=$vv;
@@ -1007,19 +1016,19 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $Orders=array();//购物车商品集
         $fidarr=array_unique($fidarr);
         $fidarr=array_merge($fidarr);
-      
+
         foreach ($fidarr as $k=>$v){
             $getname=pdo_get('pintuan_warehome', array('fid' => $v), array('Name'));
-          	$i=0;
+            $i=0;
             foreach ($gidsarr as $kk=>$vv){
                 $getgood=pdo_get('pintuan_goodmy', array('gID' => $vv));
-               //查找商品下的发货地
+                //查找商品下的发货地
                 $fid=pdo_get('pintuan_lanmu',array('QsID'=>$getgood['zid']),array('fid'));
-               if ($fid['fid']!=$v){
-                 array_merge($gidsarr);
-                  $i=0;
+                if ($fid['fid']!=$v){
+                    array_merge($gidsarr);
+                    $i=0;
                     continue;
-                
+
                 }else{
                     $Orders[$k]['Items'][$i]['AgentItemID']=$vv;
                     $Orders[$k]['Items'][$i]['fid']=$v;
@@ -1033,7 +1042,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
                         $Orders[$k]['Items'][$i]['Products'][$kkk]["Size"]=$vvv['Size'];
                         $Orders[$k]['Items'][$i]['Products'][$kkk]["Qty"]=$vvv['Qty'];
                     }
-                 	$i++;
+                    $i++;
                 }
             }
             //发货地下的所有商品数量
@@ -1056,7 +1065,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $resarr['Data']['TotalPayableAmount']=number_format($allgoodtotal+array_sum($PostFee),2);
         //总运费
         $resarr['Data']['TotalOriPostFeeAmount']=number_format(array_sum($PostFee),2);
-       // $resarr=array();
+        // $resarr=array();
         //$resarr['Data']=$Orders;
         echo json_encode($resarr);
 
@@ -1078,7 +1087,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $data['uniacid']=$_W['uniacid'];//小程序id
         $data['order_num']=date('YmdHis',time()).rand(1111,9999);//订单号
         $data['time']=date("Y-m-d H:i:s",time());//下单时间
-       //"共2款,3件,合计¥ 667.21"
+        //"共2款,3件,合计¥ 667.21"
         $typenum=count($goodinfo);//款数
         $misc=array();//件数
         foreach ($goodinfo as $k=>$v){
@@ -1088,47 +1097,47 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         $res=pdo_insert('pintuan_order',$data);
         $order_id=pdo_insertid();
         $chidid=array();
-            if($res){
+        if($res){
+            foreach ($goodinfo as $k=>$v){
+                $onegood=pdo_get('pintuan_goodmy',array('gID'=>$v['id']));
+                $data2['name']=$onegood['Title'];//商品名称
+                $data2['number']=$v['num'];//商品数量
+                $data2['money']=$v['price'];//商品单价
+                $data2['img']=$onegood['Itemcover'];//商品图片
+                $data2['spec']=$v['msg'];//商品规格
+                $data2['dishes_id']=$v['id'];//商品id
+                $data2['fid']=$v['fid'];//商品id
+                $data2['uniacid']=$_W['uniacid'];//小程序id
+                $data2['order_id']=$order_id;
+                $data2['Code']=date('Ymd',time()).'-'.$this->randNum(8);
+                $res2=pdo_insert('pintuan_order_goods',$data2);
+                array_push($chidid,pdo_insertid());
+            }
+            if($res2){
+                //清除购物车
                 foreach ($goodinfo as $k=>$v){
-                    $onegood=pdo_get('pintuan_goodmy',array('gID'=>$v['id']));
-                    $data2['name']=$onegood['Title'];//商品名称
-                    $data2['number']=$v['num'];//商品数量
-                    $data2['money']=$v['price'];//商品单价
-                    $data2['img']=$onegood['Itemcover'];//商品图片
-                    $data2['spec']=$v['msg'];//商品规格
-                    $data2['dishes_id']=$v['id'];//商品id
-                    $data2['fid']=$v['fid'];//商品id
-                    $data2['uniacid']=$_W['uniacid'];//小程序id
-                    $data2['order_id']=$order_id;
-                    $data2['Code']=date('Ymd',time()).'-'.$this->randNum(8);
-                    $res2=pdo_insert('pintuan_order_goods',$data2);
-                   array_push($chidid,pdo_insertid());
+                    pdo_delete('pintuan_cart',array('Itemid'=>$v['id'],"cUid"=>$uid));
                 }
-                if($res2){
-                  //清除购物车
-                    foreach ($goodinfo as $k=>$v){
-                        pdo_delete('pintuan_cart',array('Itemid'=>$v['id'],"cUid"=>$uid));
-                    }
-                   $resdata['Data']['OrderIds']=implode(',',$chidid);
-                   $resdata['Data']['orderid']=$order_id;
-                    $resdata['code']=1;
-                    $resdata['msg']='提交订单成功';
-                    echo json_encode($resdata);
-                }else{
-                    $resdata['code']=0;
-                    $resdata['msg']='提交订单失败';
-                    echo json_encode($resdata);
-                }
-
+                $resdata['Data']['OrderIds']=implode(',',$chidid);
+                $resdata['Data']['orderid']=$order_id;
+                $resdata['code']=1;
+                $resdata['msg']='提交订单成功';
+                echo json_encode($resdata);
             }else{
                 $resdata['code']=0;
                 $resdata['msg']='提交订单失败';
                 echo json_encode($resdata);
             }
 
+        }else{
+            $resdata['code']=0;
+            $resdata['msg']='提交订单失败';
+            echo json_encode($resdata);
+        }
+
     }
-      //获取订单列表
-       public function doPageGetOrder(){
+    //获取订单列表
+    public function doPageGetOrder(){
         global $_W, $_GPC;
         $uid=$_GPC['uid'];
         $statuid=$_GPC['StatuID'];//订单状态
@@ -1140,19 +1149,19 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         }else{
             $data['Data']['Notice']='';
         }
-       
+
         if ($statuid==0){
             $getorder=pdo_getall('pintuan_order',array('user_id'=>$uid), array(), '', 'id DESC');
         }else{
             $getorder=pdo_getall('pintuan_order',array('user_id'=>$uid,'state'=>$statuid), array(), '', 'id DESC');
         }
-         
-         
-          if (empty($getorder)){
+
+
+        if (empty($getorder)){
             $data['Data']['OrderList']=array();
         }
         foreach ($getorder as $k=>$v){
-           if ($v['state']==3){
+            if ($v['state']==3){
                 $Buttons=array(
                     '0'=>array('isPoint'=>true,'isEnable'=>false,'title'=>'支付','action'=>'买家支付'),
                     '1'=>array('isPoint'=>false,'isEnable'=>true,'title'=>'确认收货','action'=>'买家确认收货'),
@@ -1242,7 +1251,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
             array_push($cid,$vv['id']);
         }
         $data['Data']['OrderIDS']=implode(',',$cid);//子订单id
-       if(empty($getorder['postfeenum'])){
+        if(empty($getorder['postfeenum'])){
             $data['Data']['PackageList']=array();
         }else{
             $data['Data']['PackageList']['Code']=$getorder['postfeenum'];
@@ -1274,12 +1283,12 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         //各发货地下的商品
         $allfid=pdo_getall('pintuan_order_goods',array('order_id'=>$oid),array('fid'));
         $allgoodinfo=pdo_getall('pintuan_order_goods',array('order_id'=>$oid));
-         $fids=array();//发货地id
-         foreach ($allfid as $k=>$v){
-             array_push($fids,$v['fid']);
-         }
-         $fids=array_unique($fids);
-         $fids=array_merge($fids);
+        $fids=array();//发货地id
+        foreach ($allfid as $k=>$v){
+            array_push($fids,$v['fid']);
+        }
+        $fids=array_unique($fids);
+        $fids=array_merge($fids);
         foreach ($fids as $k=>$v){
             $getname=pdo_get('pintuan_warehome', array('fid' => $v), array('Name'));
             $i=0;
@@ -1288,7 +1297,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
                     $i=0;
                     continue;
                 }else{
-                   if($vv['Summary']==2||$vv['Summary']==3||$vv['Summary']==4){
+                    if($vv['Summary']==2||$vv['Summary']==3||$vv['Summary']==4){
                         $Buttons=array(
                             '0'=>array('isPoint'=>false,'isEnable'=>false,'title'=>'取消','action'=>'买家取消'),
                             '1'=>array('isPoint'=>false,'isEnable'=>false,'title'=>'我要补货','action'=>'补货'),
@@ -1297,7 +1306,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
                         $Buttons=array(
                             '0'=>array('isPoint'=>false,'isEnable'=>$vv['Summary']==5?false:true,'title'=>'取消','action'=>'买家取消'),
                             '1'=>array('isPoint'=>false,'isEnable'=>$vv['Summary']==5?true:false,'title'=>'我要补货','action'=>'补货'),
-                        ); 
+                        );
                     }
                     $data['Data']['SenderList'][$k]['ChildOrders'][$i]['Buttons']=$Buttons;
                     $data['Data']['SenderList'][$k]['ChildOrders'][$i]['Code']=$vv['Code'];
@@ -1339,7 +1348,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         global $_W, $_GPC;
         $res=pdo_update('pintuan_order',array('state'=>5,'cancel_time'=>date("Y-m-d H:i:s")),array('id'=>$_GPC['id']));
         if ($res){
-          //取消所有子订单
+            //取消所有子订单
             $allchild=pdo_getall('pintuan_order_goods',array('order_id'=>$_GPC['id']));
             foreach ($allchild as $k=>$v){
                 pdo_update('pintuan_order_goods',array('Summary'=>5),array('id'=>$v['id']));
@@ -1370,7 +1379,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
             $newsummary='共'.($ks-1).'款,'.($jshu-$chidorder['number']).'件,合计￥'.$newalltotal;
 
             $re=pdo_update('pintuan_order',array('money'=>$newalltotal,'Summary'=>$newsummary,'postfee'=>($order['postfee']-$postfee['emsprice']*$chidorder['number'])),array('id'=>$chidorder['order_id']));
-			if($re){
+            if($re){
                 $newmoney=pdo_get('pintuan_order',array('id'=>$chidorder['order_id']),array('money'));
                 if ($newmoney['money']<=0){
                     pdo_update('pintuan_order',array('state'=>5),array('id'=>$chidorder['order_id']));
@@ -1382,7 +1391,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         }
         echo  json_encode($data);
     }
-  //确认收货
+    //确认收货
     public function doPageOkMyOrder(){
         global $_W, $_GPC;
         $res=pdo_update('pintuan_order',array('state'=>4,'complete_time'=>date("Y-m-d H:i:s")),array('id'=>$_GPC['id']));
@@ -1396,7 +1405,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         }
         echo json_encode($data);
     }
-  //字符串中去数字
+    //字符串中去数字
     function findNum($str=''){
         $str=trim($str);
         if(empty($str)){return '';}
@@ -1470,7 +1479,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         return $c;
 
     }
-   //随机生成用户名
+    //随机生成用户名
     function randName($length)
     {
         $pattern = '1234567890abcdefghijklmnopqrstuvwxyz   
@@ -1497,7 +1506,7 @@ class pintuanModuleWxapp extends WeModuleWxapp {
         }
         return $key;
     }
-      //微信支付
+    //微信支付
     public function doPagedoPay(){
         global $_W, $_GPC;
         include IA_ROOT.'/addons/pintuan/wxpay.php';
