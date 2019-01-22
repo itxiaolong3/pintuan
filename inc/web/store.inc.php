@@ -21,7 +21,7 @@ $sql="select a.*,c.Name as areaname,d.Name as fname from " . tablename("pintuan_
     . " left join " . tablename("pintuan_warehome") . " d on d.fid=a.fid "
     .$where." order by a.number asc";
 $select_sql =$sql." LIMIT " .($pageindex - 1) * $pagesize.",".$pagesize;
-$total=pdo_fetchcolumn("select count(*) from " . tablename("pintuan_lanmu") . " a" .$where." order by a.number asc",$data);
+$total=pdo_fetchcolumn("select count(*) from " . tablename("pintuan_lanmu") . " a " .$where." order by a.number asc",$data);
 $pager = pagination($total, $pageindex, $pagesize);
 $list=pdo_fetchall($select_sql,$data);	
 if($operation=='delete'){
